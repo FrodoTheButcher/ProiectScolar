@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  body{
+    background-color: rgb(97, 97, 97);
+    
+  }
+  #three_pages
+  {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    
+    
+  }
+
+
+ #wrapper_about{
+  text-align: center;
+ }
+#wrapper_about #three_pages{
+  text-align: center;
+}
+
+.model{
+  background-color: white;
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  top: 100px;
+  height: 400px;
+  width: 400px;
+  transition: all 0.5s;
+}
+.header p{
+color: white;
+position: relative;
+top: 35px;
+}
+
+ .model svg{
+  margin-bottom: 30px;
+  width: 80px;
+  height: 80px;
+  margin-top: 20px;
+ }
+
+#first_page:hover , #second_page:hover, #third_page:hover{
+  background-color:rgb(0, 115, 255);
+  width: 430px;
+  height: 430px;
+} 
+#first_page:hover svg  , #second_page:hover svg , #third_page:hover svg,
+#first_page:hover h1  , #second_page:hover h1 , #third_page:hover h1 {
+color: rgb(255, 255, 255);
+}
+.model h1{
+  position: relative;
+  bottom: 19px;
+}
+#wrapper_about .header h1{
+  font-size: 50px;
+}
+</style>
+<body>
+
+    <div id="wrapper_about">
+      <div class="header">
+        <h1>Despre noi</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, optio? Cumque reiciendis voluptatum itaque expedita, non velit earum culpa numquam explicabo corporis, dolorem voluptate impedit optio nam unde tempora maiores.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur necessitatibus autem quam quis dolore soluta rem eligendi reiciendis molestiae qui impedit, quisquam cupiditate sit nulla vitae dolor. Impedit, itaque debitis!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur necessitatibus autem quam quis dolore soluta rem eligendi reiciendis molestiae qui impedit, quisquam cupiditate sit nulla vitae dolor. Impedit, itaque debitis!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur necessitatibus autem quam quis dolore soluta rem eligendi reiciendis molestiae qui impedit, quisquam cupiditate sit nulla vitae dolor. Impedit, itaque debitis!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur necessitatibus autem quam quis dolore soluta rem eligendi reiciendis molestiae qui impedit, quisquam cupiditate sit nulla vitae dolor. Impedit, itaque debitis!</p>
+        
+      </div>
+      <div id="three_pages">
+        <div id="first_page" class="model">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587Q4 20.825 4 20V4q0-.825.588-1.413Q5.175 2 6 2h12q.825 0 1.413.587Q20 3.175 20 4v16q0 .825-.587 1.413Q18.825 22 18 22Zm5-11l2.5-1.5L16 11V4h-5Z"/></svg>
+          <h1>Obiective</h1>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+        </div>
+        <div id="second_page" class="model">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587Q4 20.825 4 20V4q0-.825.588-1.413Q5.175 2 6 2h12q.825 0 1.413.587Q20 3.175 20 4v16q0 .825-.587 1.413Q18.825 22 18 22Zm5-11l2.5-1.5L16 11V4h-5Z"/></svg>
+          <h1>Dorinte</h1>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+        </div>
+        <div id="third_page" class="model">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587Q4 20.825 4 20V4q0-.825.588-1.413Q5.175 2 6 2h12q.825 0 1.413.587Q20 3.175 20 4v16q0 .825-.587 1.413Q18.825 22 18 22Zm5-11l2.5-1.5L16 11V4h-5Z"/></svg>
+          <h1>Obligatii</h1>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+          <p>Lorem ipo. Aliquid sed accusamuiat repellat officiis culpa iure.</p>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

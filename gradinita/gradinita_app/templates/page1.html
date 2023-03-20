@@ -1,0 +1,819 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    
+
+    
+    #templates{
+      list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+     
+    }
+    #templates .field{
+      position: relative;
+      margin: 100px;
+  width: 300px; 
+  bottom: 50px;
+    }
+    
+    #templates{
+      align-items: center;
+    }
+    .descript svg{
+      width: 190px;
+      height: 190px;
+      color: rgb(20, 20, 190);
+    }
+    .descript small{
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .descript h3{
+      font-size: 40px;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .show{
+      opacity: 1 !important;
+      transform: translateX(0px) !important;
+      transform:translateY(0px) !important;
+      filter: blur(0px) !important;
+
+    }
+    .left_hidden{
+      opacity: 0;
+      transform: translateX(-300px);
+      filter: blur(100%);
+    }
+    #field1{
+      transition: all 1.5s;
+    }
+    #field2{
+      transition: all 1.2s;
+    }
+    #field3{
+      transition: all 1s;
+    }
+   
+    #navbar .field{
+      display: flex;
+      align-items: center;
+      height: 50px;
+    }
+    #navbar{
+      position:fixed;
+      display: flex;
+      width: 100vw;
+      background-color: rgb(47, 90, 230);
+      transition: all 0.5s;
+      border-top: 5px solid rgb(0, 156, 246);
+      border-bottom: 5px solid rgb(0, 156, 246);
+ 
+    }
+    #navbar .field{
+     position: relative;
+     top: 0px;
+     bottom: 0px;
+     margin-right: 90px;
+     left: 1020px;
+    }
+    
+
+   
+    #navbar .field p {
+      cursor: pointer;
+    }
+    #navbar .field p
+    {
+      font-size: 25px;
+      color: white;
+    }
+  
+    #right_side{
+      position: relative; 
+      display: flex;
+      top: 50px;
+      align-items: center;
+    }
+   
+    #right_side svg{
+      padding: 10px;
+      position: relative;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      width: 40px !important;
+      height: 40px !important;
+      filter: blur(100%);
+      transform: translateY(-150px);
+      opacity: 0;
+      align-items: center;
+    }
+ 
+    #navbar .field svg{
+      color: white;
+
+    }
+    #right_side #firstsvg{
+
+      transition: ease-in-out 1s;
+      color: blue;
+    }
+    #right_side #secondsvg{
+      transition: all 1s;
+      width: 35px !important;
+      height: 35px !important;
+      color:red;
+    }
+    #right_side #thirdsvg{
+      transition: all 0.3s;
+      color: greenyellow;
+    }
+   #navbar #logou{
+    position: absolute;
+    left: 0px;
+    background-color: rgb(90, 120, 222);
+  }
+  #navbar #logou svg{
+    width: 50px;
+    height: 50px;
+  }
+    
+
+    #navbar .field p::after{
+      content: '';
+      width: 0%;
+      height: 3px;
+      position: absolute;
+      background: white;
+      transition: all 0.3s;
+      left: 6%;
+      top: 37px;
+      opacity: 0.4;
+    }
+    #navbar .field p:hover::after{
+      width: 80%;
+    }
+    
+    .hide_top{
+      transform: translateY(-150px);
+      opacity: 0;
+
+    }
+
+    #poze h1{
+      position: relative;
+      bottom: 70px;
+      text-align: center;
+      font-size: 110px;
+      background: -webkit-linear-gradient(#540ec4, #0d7be3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+    #poze .span{
+      background: -webkit-linear-gradient(#ffffff, #0a04b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+    .hidden{
+      opacity: 0;
+    }
+    #hiddenspan 
+    {
+      transition: all 0.5s !important;
+    }
+    
+    #span2{
+      opacity: 0 ;
+      transform: translateY(50px);
+      filter: blur(100%);
+      transition: all 0.5s;
+    }
+  
+
+    .button{
+    --top : rgba(100,100,100,.8) ;
+    --bottom : rgba(100,100,100,.2) ;
+    --side : rgba(100,100,100,.5) ;
+
+    --1_top : rgba(216,0,60,.8) ;
+    --1_bottom : rgba(216,0,60,.2) ;
+    --1_side : rgba(216,0,60,.5) ;
+
+    --2_top : rgba(0,100,190,.8) ;
+    --2_bottom : rgba(0,100,190,.2) ;
+    --2_side : rgba(0,100,190,.5) ;
+
+    --3_top : rgba(0,170,100,.8) ;
+    --3_bottom : rgba(0,170,100,.2) ;
+    --3_side : rgba(0,170,100,.5) ;
+
+    --4_top : rgba(255,230,20,.8) ;
+    --4_bottom : rgba(255,230,20,.2) ;
+    --4_side : rgba(255,230,20,.5) ;
+
+    --5_top : rgba(155,50,255,.8) ;
+    --5_bottom : rgba(155,50,255,.2) ;
+    --5_side : rgba(155,50,255,.5) ;
+}
+
+
+
+.button{
+    display : flex ;
+    position : relative ;
+    width : 280px ;
+    height : 80px ;
+    text-decoration : none ;
+    perspective : 600px ;
+    background : linear-gradient( rgba(255,255,255,.1) 0% , rgba(255,255,255,0) 30%  ,rgba(255,255,255,0) 70% , rgba(255,255,255,.1)) ;
+    box-shadow : 0 0 32px rgba(0,0,0,1) ;
+}
+.button::before,
+.button::after{
+    content : '' ;
+    position : absolute ;
+    top : 0 ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+    width : 100% ;
+    height : 100% ;    
+}
+.button::before{
+    top : 0 ;
+    transform-origin : top center ;
+    transform : rotateX(70deg) ;
+    background : linear-gradient(135deg , rgba(255,255,255,.3) 10%, rgba(255,255,255,0) 60%);
+}
+.button::after{
+    bottom : 0 ;
+    transform-origin : bottom center ;
+    transform : rotateX(-110deg) ;
+    background : radial-gradient( rgba(255,255,255,0) 40%, rgba(255,255,255,.1) ) ;
+}
+.button__wrapper{
+    position : relative ;
+    z-index : 2 ;
+    width : 100% ;
+    height : 100% ;
+    background : linear-gradient( rgba(255,255,255,.4) 0% , rgba(255,255,255,0) 30%  ,rgba(255,255,255,0) 70% , rgba(255,255,255,.2)) ;
+    transform : translate3d( 0 , 27px , 74px) ;
+    perspective : 600px ;
+}
+.button__text{
+    position : relative ;
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    width : 100% ;
+    height : 100% ;
+    font-family: 'Alfa Slab One', cursive;
+    font-size : 32px ;
+    letter-spacing : 4px ;
+    color : rgba(255,255,255,.2) ;
+    transition : all ease-in-out 1s ;
+}
+.button__text::before{
+    content : '' ;
+    position : absolute ;
+    z-index : 1 ;
+    top : 0 ;
+    left : 0 ;
+    width : 230px ;
+    height : 80px ;
+    background : linear-gradient(25deg , rgba(255,255,255,.1) , rgba(255,255,255,0)) ;
+    clip-path : path('M230,0H0V80H146.96c0-35.33,33.95-65.83,83.04-80Z') ;
+}
+.button__text::after{
+    content : '' ;
+    position : absolute ;
+    z-index : 2 ;
+    top : 4px ;
+    left : 4px ;
+    width : 272px ;
+    height : 40px ;
+    background : linear-gradient(25deg , rgba(255,255,255,.3) , rgba(255,255,255,0)) ;
+    clip-path : path('M272,9.22V0H0V40H.32C48.19,22.59,151.14,10.26,272,9.22Z') ;
+}
+.button__wrapper::before,
+.button__wrapper::after{
+    content : '' ;
+    position : absolute ;
+    top : 0 ;
+    width : 84px ;
+    height : 100% ;
+    background : linear-gradient(90deg , rgba(255,255,255,.2) 0% , rgba(255,255,255,0) 30%  ,rgba(255,255,255,0) 70% , rgba(255,255,255,.2)) ;
+    background : radial-gradient( rgba(255,255,255,0) 40%, rgba(255,255,255,.1) ) ;
+}
+.button__wrapper::before{
+    left : 0 ;
+    transform-origin : left center ;
+    transform : rotateY(90deg) skewY(-20deg);
+}
+.button__wrapper::after{
+    right : 0 ;
+    transform-origin : right center ;
+    transform : rotateY(-90deg) skewY(20deg);
+}
+
+.button__box{
+    position : absolute ;
+    top : 0 ;
+    left : 8px ;
+    bottom : 0 ;
+    margin : auto 0 ;
+    width : 264px ;
+    height : 70px ;
+    transform : translate3d(0, 4px, 10px) ;
+    perspective : 600px ;
+}
+.inner{
+    transition : all ease-in-out 1s ;
+}
+.inner__back{
+    position : absolute ;
+    top : 0 ;
+    left : 0 ;
+    width : 0 ;
+    height : 100% ;
+    background : var(--bottom);
+    perspective : 600px ;
+}
+.inner__top{
+    position : absolute ;
+    z-index : 3 ;
+    top : 0 ;
+    left : 0 ;
+    width : 0 ;
+    height : 100% ;
+    transform-origin : top left ; 
+    transform : rotateX(70deg) ;
+    background : var(--top);
+}
+.inner__front{
+    position : absolute ;
+    z-index : 3 ;
+    top : 0 ;
+    left : 0 ;
+    width : 0 ;
+    height : 100% ;
+    transform-origin : top left ; 
+    transform : translate3d(0, 24px, 68px ) ;
+    background : var(--top);
+}
+.inner__bottom{
+    position : absolute ;
+    z-index : 2 ;
+    top : 0 ;
+    left : 0 ;
+    width : 0 ;
+    height : 100% ;
+    transform-origin : bottom left ; 
+    transform : rotateX(-110deg) ;
+    background : var(--bottom);
+}
+.inner__left{
+    position : absolute ;
+    z-index : 2 ;
+    top : 0 ;
+    left : 0 ;
+    width : 68px ;
+    height : 100% ;
+    transform-origin : center left ; 
+    transform : rotateY(-90deg) skewY(20deg) ;
+    background : rgba(255,0,0,0) ;
+    transition : all linear .01s ;
+}
+.inner__right{
+    position : absolute ;
+    z-index : 2 ;
+    top : 0 ;
+    left : 0 ;
+    width : 68px ;
+    height : 100% ;
+    transform-origin : center left ; 
+    transform : rotateY(-90deg) skewY(20deg) ;
+    background : rgba(255,0,0,0) ;
+}
+.button:hover .inner__top,
+.button:hover .inner__front,
+.button:hover .inner__bottom,
+.button:hover .inner__back{
+    width : 100% ;
+}
+.button:hover .inner__left{
+    background :  var(--side) ;
+}
+.button:hover .inner__right{
+    left : 100% ;
+    background :  var(--side) ;
+}
+.button:hover .button__text{
+    color : rgba(255,255,255,1) ;
+}
+.plate{
+    position : absolute ;
+    z-index : 10 ;
+    top : 0 ;
+    left : -20px ;
+    width : 320px ;
+    height : 120px ;
+    animation-duration : 3s ;
+    animation-iteration-count : infinite ;
+}
+.plate:nth-child(1){
+    animation-name : plate_1 ;
+}
+.plate:nth-child(2){
+    animation-name : plate_2 ;
+}
+.plate:nth-child(3){
+    animation-name : plate_3 ;
+}
+.plate:nth-child(4){
+    animation-name : plate_4 ;
+}
+.plate:nth-child(5){
+    animation-name : plate_5 ;
+}
+.button:hover .plate{
+    animation-play-state : paused ;
+}
+.plate:nth-child(1):hover ~ .button__box .inner__top,
+.plate:nth-child(1):hover ~ .button__box .inner__front{
+    background : var(--1_top);
+} 
+.plate:nth-child(1):hover ~ .button__box .inner__left,
+.plate:nth-child(1):hover ~ .button__box .inner__right{
+    background : var(--1_side);
+} 
+.plate:nth-child(1):hover ~ .button__box .inner__back,
+.plate:nth-child(1):hover ~ .button__box .inner__bottom{
+    background : var(--1_bottom);
+} 
+.plate:nth-child(2):hover ~ .button__box .inner__top,
+.plate:nth-child(2):hover ~ .button__box .inner__front{
+    background : var(--2_top);
+} 
+.plate:nth-child(2):hover ~ .button__box .inner__left,
+.plate:nth-child(2):hover ~ .button__box .inner__right{
+    background : var(--2_side);
+} 
+.plate:nth-child(2):hover ~ .button__box .inner__back,
+.plate:nth-child(2):hover ~ .button__box .inner__bottom{
+    background : var(--2_bottom);
+} 
+.plate:nth-child(3):hover ~ .button__box .inner__top,
+.plate:nth-child(3):hover ~ .button__box .inner__front{
+    background : var(--3_top);
+} 
+.plate:nth-child(3):hover ~ .button__box .inner__left,
+.plate:nth-child(3):hover ~ .button__box .inner__right{
+    background : var(--3_side);
+} 
+.plate:nth-child(3):hover ~ .button__box .inner__back,
+.plate:nth-child(3):hover ~ .button__box .inner__bottom{
+    background : var(--3_bottom);
+} 
+.plate:nth-child(4):hover ~ .button__box .inner__top,
+.plate:nth-child(4):hover ~ .button__box .inner__front{
+    background : var(--4_top);
+} 
+.plate:nth-child(4):hover ~ .button__box .inner__left,
+.plate:nth-child(4):hover ~ .button__box .inner__right{
+    background : var(--4_side);
+} 
+.plate:nth-child(4):hover ~ .button__box .inner__back,
+.plate:nth-child(4):hover ~ .button__box .inner__bottom{
+    background : var(--4_bottom);
+} 
+.plate:nth-child(5):hover ~ .button__box .inner__top,
+.plate:nth-child(5):hover ~ .button__box .inner__front{
+    background : var(--5_top);
+} 
+.plate:nth-child(5):hover ~ .button__box .inner__left,
+.plate:nth-child(5):hover ~ .button__box .inner__right{
+    background : var(--5_side);
+} 
+.plate:nth-child(5):hover ~ .button__box .inner__back,
+.plate:nth-child(5):hover ~ .button__box .inner__bottom{
+    background : var(--5_bottom);
+} 
+@keyframes plate_1{
+    0%   { transform : scale(1) ; }
+    19.9%{ transform : scale(1) ; }
+    20%  { transform : scale(0) ; }
+    100% { transform : scale(0) ; }
+}
+@keyframes plate_2{
+    0%   { transform : scale(0) ; }
+    19.9%{ transform : scale(0) ; }
+    20%  { transform : scale(1) ; }
+    39.9%{ transform : scale(1) ; }
+    40%  { transform : scale(0) ; }
+    100% { transform : scale(0) ; }
+}
+@keyframes plate_3{
+    0%   { transform : scale(0) ; }
+    39.9%{ transform : scale(0) ; }
+    40%  { transform : scale(1) ; }
+    59.9%{ transform : scale(1) ; }
+    60%  { transform : scale(0) ; }
+    100% { transform : scale(0) ; }
+}
+@keyframes plate_4{
+    0%   { transform : scale(0) ; }
+    59.9%{ transform : scale(0) ; }
+    60%  { transform : scale(1) ; }
+    79.9%{ transform : scale(1) ; }
+    80%  { transform : scale(0) ; }
+    100% { transform : scale(0) ; }
+}
+@keyframes plate_5{
+    0%   { transform : scale(0) ; }
+    79.9%{ transform : scale(0) ; }
+    80%  { transform : scale(1) ; }
+    100% { transform : scale(1) ; }
+}
+
+
+
+
+/* 本体に関係ないスタイル */
+.container{
+    width : 100% ;
+    height : 200px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : center ;
+    align-items : center ;
+    background-image: linear-gradient(#dadada,#0f25cf);
+}
+body{
+  background-image: linear-gradient(#ffffff,#ffffff);
+
+}
+
+.movepage{
+  transform: translateX(-1500px) !important;
+}
+
+
+
+
+
+#page2{
+  position: absolute;
+  transition: all 0.5s;
+  background-image: linear-gradient(rgb(255, 255, 255),rgb(213, 213, 213));
+  
+ 
+}
+
+.showpage2{
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(-900px) !important;
+}
+#page2 .field3 img{
+  width: 500px;
+  height:500px;
+  
+}
+#page2 .field3{
+  transition: all 0.5s;
+  position: relative;
+  margin-bottom: 150px;
+  margin-left: 20px;
+ 
+}
+
+#page2 .field3 h1{
+  position: relative;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#page2 .field3
+{
+  display: flex;
+  border: 1px solid black;
+}
+
+#page2 .field3 small{
+  position: relative;
+  font-size: 40px;
+  top: 80px;
+  left: 30px;
+  font-family: 'Tilt Neon', cursive;
+}
+   
+.descript_field{
+  display: flex;
+  background-size: cover;
+  background-image: linear-gradient(rgba(10, 148, 247, 0.738),transparent),url("../../static/images/first.jpg");
+}
+.descript_field button{
+  width: 300px;
+  position: absolute;
+  height: 50px;
+  top: 400px;
+  left: 900px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.descript_field button:hover{
+  
+  background-color: #0d7be3;
+  color: black;
+  border-radius: 10%;
+}
+.descript_field button:hover  svg{
+  transition: all 0.5s;
+}
+.descript_field button:hover  svg{
+  width: 40px;
+  height: 40px;
+  color: white;
+  transition: all 0.5s;
+}
+
+  </style>
+</head>
+<body>
+ 
+  <div id="first_page">
+   
+    <section id="navbar" class="hide_top"> 
+
+      <div class="field" id="logou">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13a9 9 0 0 0 9 9c0-5-4.03-9-9-9m9-7.5A2.5 2.5 0 0 1 14.5 8a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 9.5 8A2.5 2.5 0 0 1 12 5.5m-6.4 4.75a2.5 2.5 0 0 0 2.5 2.5c.53 0 1.02-.17 1.4-.44v.19A2.5 2.5 0 0 0 12 15a2.5 2.5 0 0 0 2.5-2.5v-.19c.38.27.87.44 1.4.44a2.5 2.5 0 0 0 2.5-2.5c0-1-.59-1.85-1.43-2.25c.84-.4 1.43-1.26 1.43-2.25a2.5 2.5 0 0 0-2.5-2.5c-.53 0-1.02.16-1.4.44V3.5A2.5 2.5 0 0 0 12 1a2.5 2.5 0 0 0-2.5 2.5v.19c-.38-.28-.87-.44-1.4-.44a2.5 2.5 0 0 0-2.5 2.5c0 .99.59 1.85 1.43 2.25c-.84.4-1.43 1.25-1.43 2.25M12 22a9 9 0 0 0 9-9c-5 0-9 4-9 9Z"/></svg>
+      </div>
+  
+      <div class="field">
+        <p>Home</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
+  
+      </div>
+      <div class="field">
+        <p>Account</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5.85 17.1q1.275-.975 2.85-1.538Q10.275 15 12 15q1.725 0 3.3.562q1.575.563 2.85 1.538q.875-1.025 1.363-2.325Q20 13.475 20 12q0-3.325-2.337-5.663Q15.325 4 12 4T6.338 6.337Q4 8.675 4 12q0 1.475.488 2.775q.487 1.3 1.362 2.325ZM12 13q-1.475 0-2.488-1.012Q8.5 10.975 8.5 9.5t1.012-2.488Q10.525 6 12 6t2.488 1.012Q15.5 8.025 15.5 9.5t-1.012 2.488Q13.475 13 12 13Zm0 9q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Zm0-2q1.325 0 2.5-.387q1.175-.388 2.15-1.113q-.975-.725-2.15-1.113Q13.325 17 12 17t-2.5.387q-1.175.388-2.15 1.113q.975.725 2.15 1.113Q10.675 20 12 20Zm0-9q.65 0 1.075-.425q.425-.425.425-1.075q0-.65-.425-1.075Q12.65 8 12 8q-.65 0-1.075.425Q10.5 8.85 10.5 9.5q0 .65.425 1.075Q11.35 11 12 11Zm0-1.5Zm0 9Z"/></svg>
+      </div>
+      <div class="field">
+        <p>Logout</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="currentColor" d="M116.832 543.664H671.28c17.696 0 32-14.336 32-32s-14.304-32-32-32H118.832l115.76-115.76c12.496-12.496 12.496-32.752 0-45.248s-32.752-12.496-45.248 0l-189.008 194l189.008 194c6.256 6.256 14.432 9.376 22.624 9.376s16.368-3.12 22.624-9.376c12.496-12.496 12.496-32.752 0-45.248zM959.664 0H415.663c-35.36 0-64 28.656-64 64v288h64.416V103.024c0-21.376 17.344-38.72 38.72-38.72h464.72c21.391 0 38.72 17.344 38.72 38.72l1.007 818.288c0 21.376-17.328 38.72-38.72 38.72h-465.71c-21.376 0-38.72-17.344-38.72-38.72V670.944l-64.416.08V960c0 35.344 28.64 64 64 64h543.984c35.36 0 64.016-28.656 64.016-64V64c-.015-35.344-28.671-64-64.015-64z"/></svg>
+      </div>
+      
+  
+    </section>
+  
+  
+    <section id="right_side">
+      <svg  class="svgright" id="firstsvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+      <svg class="svgright"  id="secondsvg"  xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M7.5 5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5Z"/><path fill="currentColor" fill-rule="evenodd" d="M4.5 0A4.5 4.5 0 0 0 0 4.5v6A4.5 4.5 0 0 0 4.5 15h6a4.5 4.5 0 0 0 4.5-4.5v-6A4.5 4.5 0 0 0 10.5 0h-6ZM4 7.5a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0ZM11 4h1V3h-1v1Z" clip-rule="evenodd"/></svg>
+      <svg  class="svgright"  id="thirdsvg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><path fill="currentColor" d="M5 4.768a.5.5 0 0 1 .761.34l.14.836a.5.5 0 0 1-.216.499l-.501.334A4.501 4.501 0 0 1 5 5.5v-.732ZM9.5 10a4.5 4.5 0 0 1-1.277-.184l.334-.5a.5.5 0 0 1 .499-.217l.836.14a.5.5 0 0 1 .34.761H9.5Z"/><path fill="currentColor" fill-rule="evenodd" d="M0 7.5a7.5 7.5 0 1 1 3.253 6.182l-2.53 1.265a.5.5 0 0 1-.67-.67l1.265-2.53A7.467 7.467 0 0 1 0 7.5Zm4.23-3.42l.206-.138a1.5 1.5 0 0 1 2.311 1.001l.14.837a1.5 1.5 0 0 1-.648 1.495l-.658.438A4.522 4.522 0 0 0 7.286 9.42l.44-.658a1.5 1.5 0 0 1 1.494-.648l.837.14a1.5 1.5 0 0 1 1.001 2.311l-.138.207a.5.5 0 0 1-.42.229h-1A5.5 5.5 0 0 1 4 5.5v-1a.5.5 0 0 1 .23-.42Z" clip-rule="evenodd"/></svg>
+    </section>
+  
+    <section id="templates">
+        <div class="field left_hidden" id="field1">
+          <div class="descript">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 40c8.837 0 16-7.163 16-16S32.837 8 24 8S8 15.163 8 24s7.163 16 16 16Zm0 2c9.941 0 18-8.059 18-18S33.941 6 24 6S6 14.059 6 24s8.059 18 18 18Z"/><path d="M21.286 21.249c.107.398.146.835.016 1.193a.5.5 0 0 1-.728.257a7.15 7.15 0 0 1-.766-.557l-.195-.16c-.18-.146-.354-.288-.534-.423c-.502-.375-.9-.573-1.245-.556c-.362.018-.8.271-1.362.715c-.159.125-.329.267-.505.415c-.388.324-.808.675-1.207.931a.5.5 0 0 1-.766-.352c-.05-.365.026-.821.169-1.267a5.56 5.56 0 0 1 .695-1.416c.62-.907 1.626-1.762 2.973-1.706c1.3.055 2.264.817 2.844 1.647c.292.416.498.863.61 1.279Zm5.344 0c-.108.398-.147.835-.017 1.193a.5.5 0 0 0 .729.257c.262-.158.521-.36.765-.557l.196-.16c.18-.146.354-.288.534-.423c.501-.375.9-.573 1.244-.556c.363.018.8.271 1.363.715c.158.125.328.267.505.415c.387.324.807.675 1.207.931a.5.5 0 0 0 .765-.352c.05-.365-.026-.821-.168-1.267a5.56 5.56 0 0 0-.695-1.416c-.62-.907-1.627-1.762-2.974-1.706c-1.3.055-2.263.817-2.844 1.647a4.172 4.172 0 0 0-.61 1.279ZM24 37c-4.038 0-7.538-3.048-9.258-7.5a17.99 17.99 0 0 1-.05-.129C14.246 28.18 15.2 27 16.473 27h15.055c1.273 0 2.228 1.18 1.78 2.371a17.99 17.99 0 0 1-.049.129C31.538 33.952 28.038 37 24 37Zm7.276-7.928c-.3.728-.649 1.396-1.035 2H17.759a12.46 12.46 0 0 1-.913-1.715v-.285h14.43Z"/><path d="M31.272 33.072c.227-.295.444-.603.65-.923a14.6 14.6 0 0 0 1.385-2.778c.383-1.017-.258-2.027-1.247-2.3a2 2 0 0 0-.533-.071H16.473a2 2 0 0 0-.533.072a1.89 1.89 0 0 0-1.094.797a1.662 1.662 0 0 0-.153 1.502a17.99 17.99 0 0 0 .322.79c.31.705.666 1.37 1.063 1.988c.206.32.423.628.65.922C18.602 35.502 21.168 37 24 37c2.831 0 5.398-1.498 7.272-3.928Zm.004-4a12.776 12.776 0 0 1-1.035 2H17.759a12.46 12.46 0 0 1-.913-1.715v-.285h14.43Z"/></g></svg>
+            <h3>Distractie</h3>
+            <small>Distractia este un punct forte al nostru</small>
+            </div>
+        </div>
+        <div class="field left_hidden" id="field2">
+          <div class="descript">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M30 30h-2c0-1.654-1.346-3-3-3h-4c-1.654 0-3 1.346-3 3h-2c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5zM15 16a1 1 0 0 0-1 1v6h2v-6a1 1 0 0 0-1-1z"/><path fill="currentColor" d="M32 12H14v2h4v5c0 2.757 2.243 5 5 5s5-2.243 5-5v-5h4v-2Zm-9 10c-1.654 0-3-1.346-3-3v-1h6v1c0 1.654-1.346 3-3 3Zm3-6h-6v-2h6v2Z"/><path fill="currentColor" d="M25.798 10C24.87 5.441 20.83 2 16 2a9.977 9.977 0 0 0-9.822 8.124C2.655 10.754 0 13.849 0 17.5C0 21.636 3.365 25 7.5 25H12v-2H7.5A5.506 5.506 0 0 1 2 17.5a5.51 5.51 0 0 1 5.123-5.48l.836-.057l.09-.833A7.98 7.98 0 0 1 16 4c3.72 0 6.845 2.555 7.737 6h2.061Z"/></svg>
+            <h3>Educatie</h3> 
+           <small>Fara de care nimic nu este posibil</small>
+          </div>
+    
+        </div>
+        <div class="field left_hidden" id="field3">
+    
+          <div class="descript">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path fill="currentColor" d="M32.74 14.998a4.5 4.5 0 1 0 0-8.998a4.5 4.5 0 0 0 0 8.998Zm-12.003 5.471a2.643 2.643 0 1 0-3.75-3.728l-1.96 1.972H12.44a2.643 2.643 0 0 0 0 5.287h2.76a5 5 0 0 0 3.595-1.524l1.94-2.007Zm.178 8.72s-2.278-.425-3.21 0c-.694.316-3.38 1.28-4.705 1.752v8.86c.767-.044 2.293-.125 2.945-.099c1.943.079 3.394.54 4.861 1.006c1.369.435 2.752.875 4.56 1.012c.456.034.898.079 1.327.122c1.55.156 2.922.294 4.058-.122c1.45-.531 9.732-4.566 10.767-5.628c1.036-1.062.518-3.93-2.692-3.399c-1.583.262-3.42 1.016-5.084 1.699c-1.71.701-3.239 1.329-4.13 1.275c-1.76-.106-6.42-.956-6.42-.956l5.35.065s.756.04 1.794-.702c1.04-.742 1.968-2.867.415-2.867s-3.21-.532-3.21-.532l-6.626-1.486ZM6 30a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v10.996a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V30.001Zm28.632-11.343a2.667 2.667 0 0 1 .004 5.334l-3.137.004c-.014 0-.027-.002-.04-.004a.234.234 0 0 0-.038-.003a2.292 2.292 0 0 1-1.703-.694l-.721-.722a4.652 4.652 0 0 1-3.342 1.423h-3.083l-.468-9.351h4.958a4 4 0 0 1 2.857 1.2l2.756 2.813h1.957Z"/></svg>
+            <h3>Atentie</h3>
+          <small>Dorim sa oferim tot posibilul de a ingriji copii nostrii</small>
+          </div>
+          
+        
+      </div>
+     
+  
+    </section>
+  
+  
+    <section id="poze">
+      <h1 id="span2" >Artistii nostrii </h1> <br> <h1 id="hiddenspan" class="hidden" >va asteapta!</h1>
+    </section>
+    <div class="container" id="container" onclick="move()">
+      <a href="#" class="button">
+        <div class="plate"></div>
+        <div class="plate"></div>
+        <div class="plate"></div>
+        <div class="plate"></div>
+        <div class="plate"></div>
+        <div class="button__wrapper">
+          <span class="button__text">ENTRY</span>
+        </div>
+        <div class="button__box">
+          <div class="inner inner__top"></div>
+          <div class="inner inner__front"></div>
+          <div class="inner inner__bottom"></div>
+          <div class="inner inner__back"></div>
+          <div class="inner inner__left"></div>
+          <div class="inner inner__right"></div>
+        </div>
+      </a>
+    </div>
+  
+  </div>
+  
+
+  
+</body>
+
+<script>
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    console.log(entry);
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+    else{
+      entry.target.classList.remove('show');
+    }
+  });
+
+
+});
+
+
+const hiddenleft_Elements =document.querySelectorAll('.left_hidden');
+hiddenleft_Elements.forEach((el)=>observer.observe(el));
+
+const navbar=document.getElementById("navbar");
+const title = document.getElementById("hiddenspan");
+const title2 = document.getElementById("span2");
+const svgs = document.getElementsByClassName("svgright");
+setTimeout(function() {
+  navbar.classList.add("show");
+  title.classList.add("show")
+  title2.classList.add("show")
+  for(var i=0;i<svgs.length;i++)
+    svgs[i].classList.add("show");
+
+}, 200);
+
+
+
+function move()
+{
+  title.classList.add("movepage");
+  title2.classList.add("movepage");
+  const sv = document.getElementsByClassName("svgright");
+  var first = document.getElementById("firstsvg");
+  var second = document.getElementById("secondsvg");
+  var third = document.getElementById("thirdsvg");
+  var btn=document.getElementById("container");
+  first.classList.add("movepage");
+  second.classList.add("movepage");
+  third.classList.add("movepage");
+  btn.classList.add("movepage");
+
+  var fild = document.getElementsByClassName("field");
+  for(var i=0;i<fild.length;i++)
+    fild[i].classList.add("movepage");
+
+  var pag2=document.getElementById("page2");
+  pag2.classList.add("showpage2");
+
+
+
+
+
+
+}
+
+</script>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #left_section
+    {
+        background-color: white;
+        width: 30%;
+        height: 100vh;
+        position: relative;
+    }
+    #bar
+    {
+        background-color: rgb(44, 82, 252);
+        width: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #bar svg{
+       margin-top: 50px;
+       color: white;
+       margin-right: 10px;
+    }
+  #bar  #last_svg
+    {
+        position: relative;
+
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-top: auto;
+        bottom: 30px;
+    }
+    #bar #wrapper_last
+    {
+        align-items: center;
+    }
+    #bar #first_svg svg
+    {
+        position: relative;
+        bottom: 30px;
+        width: 40px;
+        height: 40px;
+    }
+    #bar #first_svg
+    {
+        background-color: rgb(9, 49, 224);
+        width: 100%;
+        text-align: center;
+
+        height: 75px;
+    }
+    #right_section
+    {
+        width: 70%;
+        height: 100vh;
+        background-color: rgb(248, 248, 248);
+        position: relative;
+    }
+    #right_section h1{
+        font-weight: bold;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    #wrapper
+    {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin-bottom:0px;
+        width:100vw;
+        height: 100vh;
+    }
+    .field
+    {
+        border: 1px solid rgba(183, 180, 180, 0.345);
+        left: 0px;
+    }
+    .field p{
+        font-weight: bold;
+        
+    }
+  
+   .title_field
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        padding-left: 15px;
+    }
+   
+    .field .title_field p{
+        padding-left: 15px;
+    }
+    .field .title_field svg{
+        padding-left: 5px;
+    }
+    .content_field{
+        position: relative;
+        left: 30px;
+        margin-bottom: 10px;
+        
+    }
+    .content_field small {
+        font-family:'Times New Roman', Times, serif;
+        color: rgb(97, 97, 97);
+    }
+
+    svg{
+        cursor: pointer;
+    }
+    #upper 
+    {
+        position: relative;
+        left: 100px;
+    }
+    #upper h1{
+        line-height: 35px;
+
+    }
+    #upper #mini_header{
+        line-height: 5px;
+    }
+    #upper #mini_header small{
+        color: rgb(145, 144, 144);
+    }
+    #upper #mini_header h3{
+        color: rgb(36, 36, 36);
+    }
+    #first_section
+    {
+        position: relative;
+        display: flex;
+        left: 100px;
+        bottom: 20px;
+    }
+   
+    .field2{
+        line-height: 1px;
+        position: relative;
+        top: 50px;
+        padding-right: 100px;
+    }
+    .field2 input{
+        width: 370px;
+        height: 28px;
+    }
+    #wrapper_first_section
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #second_section , #third_section
+    {
+        position: relative;
+        left: 100px;
+        top: 65px;
+    }
+    #third_section
+    {
+        position: relative;
+        top: 100px;
+        align-items: center;
+    }
+    #third_section input{
+        width: 100px;
+        border-radius: 10%;
+    }
+    #third_section img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+   
+    #fourth_section{
+        position: relative;
+        top: 100px;
+        align-items: center;
+    }
+    .fieldunu
+    {
+        display: flex;
+        margin: 15px;
+        
+    }
+    .fielddoi
+    {
+        display: flex;
+        margin: 15px;
+        margin-top: 80px;
+    }
+    .fielddoi  .wrap_field_f .title_field svg,
+    .fieldunu  .wrap_field_f .title_field svg
+    {
+        margin-right: 10px;
+    }
+   
+
+    #fourth_section
+    {
+        position: relative;
+        left: 100px;
+        top: 130px;
+        line-height: 5px;
+    }
+    #fourth_section input
+    {
+        width: 300px;
+        
+    }
+    #dialog ,#dialog2{
+        z-index: 50;
+        width: 300px;
+        height: 400px;
+        background-color: #ffffff;
+        text-align: center;
+        border: none !important;
+    }
+    #dialog 
+    {
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+
+        height: 650px !important;
+        border: 10px solid rgba(0, 0, 255, 0.055) !important;
+        border-radius: 5% !important;
+    }
+       #dialog .fields  , #dialog2 .fields{
+        padding: 20px;
+    }
+    .fields label {
+        z-index: 1;
+        font-weight: bold;
+        position: relative;
+        bottom: 10px;
+    }
+    #dialog{
+        height: 600px; 
+    }
+    #dialog .fields {
+        margin-left: 25px;
+        display: flex;
+        flex-direction: column;
+    }
+ 
+    #dialog  .fields  {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+    }
+
+    #dialog #bttnclose_div {
+        width: 300px;
+        text-align: center;
+        
+    }
+    #dialog #bttnclose_div button{
+        background-color: transparent;
+        width: 300px;
+        transition:all 0.5s;
+    }
+
+    #dialog #bttnsubmit_div {
+        width: 300px;
+        text-align: center;
+        
+    }
+    #dialog #bttnsubmit_div input{
+        background-color: transparent;
+        margin-bottom: 10px;
+        width: 300px;
+        
+        transition: all 0.5s;
+    }
+
+    #dialog #bttnclose_div button:hover ,
+    #dialog #bttnsubmit_div input:hover{
+        background-color: rgb(13, 2, 221);
+        color: rgb(255, 255, 255);
+        transform: translateY(-1px);
+    }
+    #dialog h1{
+        position: relative;
+        bottom: 10px;
+    }
+  
+.fields{
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+
+#kidlabel{
+    opacity: 0;
+    visibility: none;
+    pointer-events: none;
+}
+#form_headder{
+    line-height: 10px;
+    position: relative;
+    width: 300px;
+    height: 100px;
+ 
+    border-radius: 20%;
+    z-index: 70;
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+    bottom: 10px !important;
+    
+}
+
+#dialog2 button{
+    background-color: rgb(0, 47, 255);
+    width: 120px;
+    height: 40px;
+    color: white;
+    border-radius: 10%;
+    position: relative;
+    top: 50px;
+}
+#dialog2 #inputbtn{
+    background-color: rgb(0, 47, 255);
+    width: 120px;
+    height: 40px;
+    color: white;
+    border-radius: 10%;
+    position: relative;
+    top: 20px;
+
+}
+
+#dialog2 .fields{
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+#dialog2 label {
+    position: relative;
+    bottom: 40px;
+}
+#dialog2{
+    height: 550px !important;
+    transition: all 0.5s;
+}  
+#dialog2 button , #dialog2 #inputbtn {
+    transition: all 0.2s;
+}
+#dialog2 button:hover , #dialog2 #inputbtn:hover {
+    transform: translateY(-2px);
+    background-color: rgb(50, 50, 249);
+}
+</style>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <dialog id="dialog"  >
+        <div id="form_headder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><circle cx="24" cy="11" r="7"/><path d="M4 41c0-8.837 8.059-16 18-16m9 17l10-10l-4-4l-10 10v4h4Z"/></g></svg>
+
+            <h1>Schimba date cont</h1>
+
+        </div>
+        <form name="upgrade_form" action="{%url 'update_profile' request.user.id %}" method="POST">
+            {% csrf_token %}
+
+        <div class="fields">
+            <label for="">Nume</label>
+
+            {{formprofile.name}}
+        </div>
+        <div class="fields">
+            <label for="">Prenume</label>
+
+            {{formprofile.last_name}}
+        </div>
+        <div class="fields">
+            <label for="">Nume Complet</label>
+
+            {{formprofile.username}}
+        </div>
+        <div >
+            <label for="">Imagine de profil</label>
+
+            {{formprofile.profile_image}}
+        </div>
+        <div class="fields">
+            <label for="">Email</label>
+
+            {{formprofile.email}}
+        </div>
+        <div class="fields" id="kidlabel"> 
+            <label for="">Kid</label>
+
+            {{formprofile.kid}}
+        </div>
+        <div id="bttnsubmit_div">
+        <input name="upgrade_form" type="submit" value="salveaza">
+        
+    </div>
+        </form>
+        {% for field in form %}
+        {% if field.help_text %}
+          <small  >{{field.help_text}}</small>
+        {% endif %}
+      {% endfor %}
+        <div id="bttnclose_div">
+        <button id="close_dialog">Inchide</button>
+        </div>
+    </dialog>
+    <dialog id="dialog2" open  >
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587Q4 20.825 4 20V10q0-.825.588-1.413Q5.175 8 6 8h9V6q0-1.25-.875-2.125T12 3q-1.025 0-1.812.612q-.788.613-1.063 1.538q-.125.375-.387.612Q8.475 6 8.125 6q-.5 0-.8-.338q-.3-.337-.2-.762Q7.5 3.225 8.85 2.112Q10.2 1 12 1q2.075 0 3.538 1.462Q17 3.925 17 6v2h1q.825 0 1.413.587Q20 9.175 20 10v10q0 .825-.587 1.413Q18.825 22 18 22Zm0-2h12V10H6v10Zm6-3q.825 0 1.413-.587Q14 15.825 14 15q0-.825-.587-1.413Q12.825 13 12 13q-.825 0-1.412.587Q10 14.175 10 15q0 .825.588 1.413Q11.175 17 12 17Zm-6-7v10v-10Z"/></svg>
+        <h1>Schimba parola</h1>
+        <form name="change_password" action="{% url 'change_password' request.user.id %}"  method="POST">
+            {% csrf_token %}
+
+        <div class="fields">
+            {{password.password1}}
+            <label for="">Parola noua</label>
+        </div>
+        <div class="fields">
+            {{password.password2}}
+            <label for="">Repeta parola </label>
+        </div>
+        <div class="fields">
+            <input type="text" name="oldpassword">
+            <label for="">Parola veche</label>
+        </div>
+      
+        <input id="inputbtn" name="schimba_parola" type="submit" value="salveaza">
+        </form>
+        <button id="close_dialog2">Inchide</button>
+
+    </dialog>
+
+    <div id="wrapper" >
+        <div id="bar">
+            <div id="first_svg" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-7-3.8v-6L1 9l11-6l11 6v8h-2v-6.9l-2 1.1v6Zm0-8.3L18.85 9L12 5.3L5.15 9Zm0 6.025l5-2.7V12.25L12 15l-5-2.75v3.775Zm0-6.025Zm0 2.25Zm0 0Z"/></svg>
+            </div>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 11h8v2H5v3l-5-4l5-4v3zm-1 7h2.708a8 8 0 1 0 0-12H4a9.985 9.985 0 0 1 8-4c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.985 9.985 0 0 1-8-4z"/></svg>
+
+          
+            <img id="last_svg" src="{{ profile.profile_image.url }}" alt="">
+          
+        </div>
+        <div id="left_section">
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
+                    <p>Acasa</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-1.99.9-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2zm-4.42 4.8L12 14.5l-3.58 2.3l1.08-4.12l-3.29-2.69l4.24-.25L12 5.8l1.54 3.95l4.24.25l-3.29 2.69l1.09 4.11z"/></svg>                    <p>Activitati</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.75 19.13c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 11.25c-1.24 0-2.25-.84-2.25-1.87c0-1.04 1.01-1.88 2.25-1.88s2.25.84 2.25 1.88c0 1.03-1.01 1.87-2.25 1.87m-3.75 7.88c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 8.25c.41 0 .75.34.75.75s-.34.75-.75.75s-.75-.34-.75-.75s.34-.75.75-.75M18.75 12c-.32 0-.63.07-.91.2c-.48-.61-1.13-1.13-1.91-1.53c.57-.8.91-1.77.91-2.82v-.06c1.09-.23 1.91-1.2 1.91-2.37c0-1.33-1.09-2.42-2.42-2.42c-.69 0-1.33.29-1.75.75a4.813 4.813 0 0 0-5.16 0C9 3.29 8.36 3 7.67 3C6.34 3 5.25 4.09 5.25 5.42c0 1.16.82 2.13 1.9 2.37v.06c0 1.05.35 2.03.91 2.82c-.77.4-1.42.92-1.9 1.53A2.24 2.24 0 0 0 3 14.25c0 1.25 1 2.25 2.25 2.25h.06c-.04.24-.06.5-.06.75c0 2.07 1.34 3.75 3 3.75c1.01 0 1.9-.63 2.45-1.59c.42.06.85.09 1.3.09c.45 0 .88-.03 1.3-.09c.55.96 1.44 1.59 2.45 1.59c1.66 0 3-1.68 3-3.75c0-.25-.02-.51-.06-.75h.06c1.25 0 2.25-1 2.25-2.25S20 12 18.75 12"/></svg>                 
+                       <p>Copil</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-2.05 0-3.875-.788q-1.825-.787-3.187-2.15q-1.363-1.362-2.15-3.187Q2 14.05 2 12q0-2.075.788-3.887q.787-1.813 2.15-3.175Q6.3 3.575 8.125 2.787Q9.95 2 12 2q2.075 0 3.887.787q1.813.788 3.175 2.151q1.363 1.362 2.15 3.175Q22 9.925 22 12q0 2.05-.788 3.875q-.787 1.825-2.15 3.187q-1.362 1.363-3.175 2.15Q14.075 22 12 22Zm0-2.05q.65-.9 1.125-1.875T13.9 16h-3.8q.3 1.1.775 2.075q.475.975 1.125 1.875Zm-2.6-.4q-.45-.825-.787-1.713Q8.275 16.95 8.05 16H5.1q.725 1.25 1.812 2.175Q8 19.1 9.4 19.55Zm5.2 0q1.4-.45 2.487-1.375Q18.175 17.25 18.9 16h-2.95q-.225.95-.562 1.837q-.338.888-.788 1.713ZM4.25 14h3.4q-.075-.5-.113-.988Q7.5 12.525 7.5 12t.037-1.012q.038-.488.113-.988h-3.4q-.125.5-.188.988Q4 11.475 4 12t.062 1.012q.063.488.188.988Zm5.4 0h4.7q.075-.5.113-.988q.037-.487.037-1.012t-.037-1.012q-.038-.488-.113-.988h-4.7q-.075.5-.112.988Q9.5 11.475 9.5 12t.038 1.012q.037.488.112.988Zm6.7 0h3.4q.125-.5.188-.988Q20 12.525 20 12t-.062-1.012q-.063-.488-.188-.988h-3.4q.075.5.112.988q.038.487.038 1.012t-.038 1.012q-.037.488-.112.988Zm-.4-6h2.95q-.725-1.25-1.813-2.175Q16 4.9 14.6 4.45q.45.825.788 1.712q.337.888.562 1.838ZM10.1 8h3.8q-.3-1.1-.775-2.075Q12.65 4.95 12 4.05q-.65.9-1.125 1.875T10.1 8Zm-5 0h2.95q.225-.95.563-1.838q.337-.887.787-1.712Q8 4.9 6.912 5.825Q5.825 6.75 5.1 8Z"/></svg>                    <p>Limbaj</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2 24v-4h20v4Zm2-6v-3.75l9.05-9.05l3.75 3.75L7.75 18Zm2-2h.9L14 8.95L13.05 8L6 15.1Zm11.925-8.15l-3.75-3.75l1.8-1.8q.275-.3.7-.288q.425.013.7.288l2.35 2.35q.275.275.275.688q0 .412-.275.712ZM6 16Z"/></svg>                    <p>Culoare</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17q.425 0 .713-.288Q13 16.425 13 16v-4q0-.425-.287-.713Q12.425 11 12 11t-.712.287Q11 11.575 11 12v4q0 .425.288.712q.287.288.712.288Zm0-8q.425 0 .713-.288Q13 8.425 13 8t-.287-.713Q12.425 7 12 7t-.712.287Q11 7.575 11 8t.288.712Q11.575 9 12 9Zm0 12.925h-.25q-.125 0-.225-.05q-3.275-1.025-5.4-4.063Q4 14.775 4 11.1V6.375q0-.625.363-1.125q.362-.5.937-.725l6-2.25q.35-.125.7-.125t.7.125l6 2.25q.575.225.938.725q.362.5.362 1.125V11.1q0 3.675-2.125 6.712q-2.125 3.038-5.4 4.063q-.125.05-.475.05Zm0-2.025q2.6-.825 4.3-3.3q1.7-2.475 1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3Zm0-7.9Z"/></svg>                    <p>Privat</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            <div class="field">
+                <div class="title_field">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7 23q-.825 0-1.412-.587Q5 21.825 5 21V3q0-.825.588-1.413Q6.175 1 7 1h10q.825 0 1.413.587Q19 2.175 19 3v4h-2V6H7v12h10v-1h2v4q0 .825-.587 1.413Q17.825 23 17 23Zm0-2h10v-1H7v1Zm11-5q-1.65 0-2.825-1.175Q14 13.65 14 12q0-1.65 1.175-2.825Q16.35 8 18 8q1.65 0 2.825 1.175Q22 10.35 22 12q0 1.65-1.175 2.825Q19.65 16 18 16Zm0-1.5q.3 0 .587-.075q.288-.075.563-.225l-3.35-3.35q-.15.275-.225.562q-.075.288-.075.588q0 1.05.725 1.775q.725.725 1.775.725Zm2.2-1.35q.15-.275.225-.563q.075-.287.075-.587q0-1.05-.725-1.775Q19.05 9.5 18 9.5q-.3 0-.587.075q-.288.075-.563.225ZM7 4h10V3H7Zm0 0V3v1Zm0 17v-1v1Z"/></svg>                    <p>Aplicatie</p>
+                </div>
+               <div class="content_field">
+                <small>Click pe paragraph pentru main page</small><br>
+                <small>Sectiunea de main page va asteapta!</small>
+               </div>
+                
+            </div>
+            
+                
+            </div>
+        <div id="right_section">
+            <div id="upper" >
+                <h1>Account</h1>
+                <div id="mini_header" >
+                    <h3>Profile</h3>
+                    <small>Informatiile tale nu vor fi afisate public! Toate datele tale personale vor fi vizibile doar de tine!</small>
+                </div>
+            </div>
+            <div id="wrapper_first_section" >
+                    <div id="first_section">
+                            <div class="field2">
+                            <p>Nume</p>
+                            <input type="text" placeholder="{{profile.name}} ">
+                            </div>
+
+                            <div class="field2">
+
+                            <p>Prenume</p>
+                            <input type="text" placeholder="{{profile.last_name}} ">
+                            </div>
+
+
+                    </div>
+                    <div id="second_section" class="field2">
+
+                        <p>Nume Complet</p>
+                        <input type="text" placeholder="{{profile.username}} ">
+                    </div>
+                    <div id="third_section" class="field2">
+                        <img  src="{{ profile.profile_image.url }}" alt="">
+                        <button id="toggle_button" >Schimba date despre cont</button>
+                        <button id="toggle_button2" >Schimba parola</button>
+                    </div>
+
+
+
+
+                    <div id="fourth_section" class="field3">
+                        <div class="fieldunu">
+                            <div class="wrap_field_f">
+                                <div class="title_field" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11 11L3 6v10h10v2H3q-.825 0-1.412-.587Q1 16.825 1 16V4q0-.825.588-1.413Q2.175 2 3 2h16q.825 0 1.413.587Q21 3.175 21 4v5h-2V6Zm0-2l8-5H3Zm8 13q-1.65 0-2.825-1.175Q15 19.65 15 18v-4.5q0-1.05.725-1.775Q16.45 11 17.5 11q1.05 0 1.775.725Q20 12.45 20 13.5V18h-2v-4.5q0-.2-.15-.35q-.15-.15-.35-.15q-.2 0-.35.15q-.15.15-.15.35V18q0 .825.587 1.413Q18.175 20 19 20q.825 0 1.413-.587Q21 18.825 21 18v-4h2v4q0 1.65-1.175 2.825Q20.65 22 19 22ZM3 6V4v12v-6Z"/></svg>                                    <p>Email</p>
+                                </div>
+                            <input type="email" placeholder="{{profile.email}}">
+                            </div>
+                            <div class="wrap_field_f">
+                                <div class="title_field" >
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.95v-9q0-.425.288-.713q.287-.287.712-.287h7q.425 0 .712.287q.288.288.288.713v5q0 .425-.288.712q-.287.288-.712.288h-5Zm2-5h5v-3h-5Zm0 0v-3v3ZM19.95 21q-3.225 0-6.287-1.438q-3.063-1.437-5.425-3.8q-2.363-2.362-3.8-5.425Q3 7.275 3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.012.637q-.063.288-.288.513L6.975 10.9q1.05 1.8 2.638 3.375Q11.2 15.85 13.1 17l2.35-2.35q.225-.225.588-.338q.362-.112.712-.062l3.45.7q.35.075.575.337q.225.263.225.613v4.05q0 .45-.3.75t-.75.3ZM6.025 9l1.65-1.65L7.25 5H5.025q.125 1.025.35 2.025q.225 1 .65 1.975Zm8.95 8.95q.975.425 1.988.675q1.012.25 2.037.325v-2.2l-2.35-.475ZM6.025 9Zm8.95 8.95Z"/></svg>
+                                    <p>Numar de telefon</p>
+                                </div>
+                                <input type="text" placeholder="Nu este selectat">
+                            </div>
+                            
+                        </div>
+                        <div class="fielddoi">
+                            <div class="wrap_field_f">
+                                <div class="title_field" >
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 9V7a2 2 0 0 0-2-2h-1V2h-2v3h-1a2 2 0 0 0-2 2v2a2 2 0 0 0-2 2v1H5a2 2 0 0 0-2 2v8h3v-2h2v2h4v-2h2v2h2v-2h2v2h3V11a2 2 0 0 0-2-2M8 18H6v-2h2v2m6 0h-2v-2h2v2m0-4h-2v-2h2v2m-1-5V7h4v2h-4m5 9h-2v-2h2v2m0-4h-2v-2h2v2Z"/></svg>
+                                <p>Oras</p>
+                            </div>
+
+                            <input type="email" placeholder="Nu este selectat">
+                            </div>
+                            <div class="wrap_field_f">
+                                <div class="title_field" >
+
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 8V5h-3V3h3V0h2v3h3v2h-3v3Zm-6 4q.825 0 1.413-.588Q14 10.825 14 10t-.587-1.413Q12.825 8 12 8q-.825 0-1.412.587Q10 9.175 10 10q0 .825.588 1.412Q11.175 12 12 12Zm0 10q-4.025-3.425-6.012-6.363Q4 12.7 4 10.2q0-3.75 2.413-5.975Q8.825 2 12 2q.5 0 1 .062q.5.063 1 .188V6h3v3h2.925q.05.3.063.6q.012.3.012.6q0 2.5-1.987 5.437Q16.025 18.575 12 22Z"/></svg>
+                                    <p>Tara</p>
+                                </div>
+
+                            <input type="text" placeholder="Nu este selectat">
+                            </div>
+                        </div>
+
+
+
+                        </form>
+                       
+                    </div>
+            </div>
+           
+        </div>
+
+    </div>
+</html>
+<script>
+    const x=document.getElementById("toggle_button");
+    const y=document.getElementById("close_dialog");
+    const model = document.getElementById("dialog");
+    model.style.transition = "all 0.5s";
+
+    const bddy=document.getElementById("wrapper");
+    x.addEventListener('click' , ()=>{
+        model.show();
+        bddy.style.opacity="0.5";
+
+
+    });
+    y.addEventListener('click' , ()=>{
+        model.close();
+
+        bddy.style.opacity="1";
+
+    });
+
+
+    const x2=document.getElementById("toggle_button2");
+    const y2=document.getElementById("close_dialog2");
+    const model2 = document.getElementById("dialog2");
+    model2.style.transition = "all 2s";
+    x2.addEventListener('click' , ()=>{
+        model2.show();
+        bddy.style.opacity="0.5";
+
+    });
+    y2.addEventListener('click' , ()=>{
+        model2.close();
+        bddy.style.opacity="1";
+
+    });
+
+</script>

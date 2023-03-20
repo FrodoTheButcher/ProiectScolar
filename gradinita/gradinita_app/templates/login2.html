@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+form {
+    --text-color: #afafaf;
+    max-width: 500px;
+}
+.field {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px dashed var(--text-color);
+    margin: 4rem auto 1rem;
+}
+
+.label {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+.input {
+    outline: none;
+    border: none;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem 0;
+    background:none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.input:valid{
+    color: rgb(149, 244, 7);
+}
+.input:invalid{
+    color: red;
+}
+.field::after{
+    content: "";
+    position: relative;
+    display: block;
+    height: 4px;
+    width: 100%;
+    background:#d16dff;
+    transform: scaleX(0);
+    transform-origin: 0%;
+    transition: transform 500ms ease;
+    top: 2px;
+}
+.field:focus-within{
+    border-color:transparent;
+}
+.field:focus-within::after{
+    transform: scaleX(1);
+}
+.label {
+    z-index: -1;
+    position: absolute;
+    transform-origin: 0%;
+    transition:transform 400ms;
+    left: 1px;
+}
+.field:focus-within .label,
+    .input:not(:placeholder-shown) + .label
+{
+
+    transform: scale(0.8) translateY(-3rem);
+}
+
+
+ </style>
+</head>
+<body>
+    
+    <main>
+
+        <form action="">
+            <div class="field"> 
+                <input type="email" name="email" class="input" placeholder="">
+                <label for="email" class="label">Email</label>
+             </div>
+             <div class="field"> 
+                <input type="text" name="username" class="input" placeholder="">
+                <label for="username" class="label">Username</label>
+             </div>
+             <div class="field"> 
+                <input type="password" name="password" class="input" placeholder="" on:input="{validatePassword}">
+                <label for="password" class="label">password</label>
+             </div>
+            
+            
+        </form>
+
+    </main>
+
+</body>
+
+</html>

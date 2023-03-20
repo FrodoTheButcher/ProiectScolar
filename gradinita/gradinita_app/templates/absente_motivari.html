@@ -1,0 +1,255 @@
+{% include 'navbar.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .profile-sidebar{
+        position: relative;
+        width: 200px;
+        border: 5px solid #010101;
+        background-image: linear-gradient(#ffffff, #e1e1e1);
+
+    }
+    .profile-sidebar img{
+       margin-left: 30px;
+       margin-top: 20px;
+    }
+    .profile-sidebar h3 , .profile-sidebar p .profile-sidebar a {
+        text-align: left;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       color: black;
+       font-size: 18px;
+       
+    }
+
+    h1 , .profile-sidebar h3 
+    {
+        background: -webkit-linear-gradient(#a7a7a7, #1c02c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+    .profile-sidebar a {
+        text-decoration: none;
+    }
+    .profile-main{
+        background-image: linear-gradient(#5b5b5b, #1c02c3);
+        width: 600px;
+        border: 5px solid #ffffff;
+        padding: 10px;
+        color: white;
+        display: flex;
+    }
+    .card{
+        position: absolute;
+        display: flex;
+        flex-direction:row;
+        width: fit-content;
+        height: fit-content;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+       border: 10px solid #111;
+
+       padding:10px;
+       box-shadow: rgba(0, 0, 0, 0.485) 50px 30px 80px;
+    }
+   
+   .profile-body
+   {
+    border: 1px solid white;
+    padding-left: 3px;
+   
+   }
+   
+    
+    .profile-main form {
+        position: relative;
+        margin-left: 8px;
+    }
+    .button_delete{
+        background-color: transparent;
+        color: rgb(201, 7, 7);
+        
+    }
+    .button_add{
+        background-color: transparent;
+        color: black;
+        border: 1px solid black;
+        border-radius: 5%;
+    }
+    .button_delete:hover {
+        color: black;
+        background-color: linear-gradient(#000000, #1c02c3)
+    }
+    p{
+        font-weight: bold;
+    }
+    .button_add:hover
+    {
+        background-color: rgb(227, 226, 226)
+    }
+    #right_side
+    {   
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+    }
+    
+    
+    #second_form
+    {
+        position: relative;
+       text-align: center;
+       border: 1px solid black;
+       background-color: #f7f7f7;
+
+       padding: 30px;
+       margin-top: 15px;
+    }
+    #first_form
+    {
+        margin-top: 10px;
+        background-color: #f7f7f7;
+        display: flex;
+        border: 1px solid black;
+        padding: 30px;
+    }
+    #second
+    {
+        margin-left: 40px;
+    }
+    #third
+    {
+        margin-top: 30px;
+    }
+    .mini_header p{
+        color: white;
+        margin-left: 12px;
+    }
+    
+  
+    #card_header{
+        position: relative;
+        text-align: center;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif,'Courier New', Courier, monospace;
+        font-size:50px;
+        bottom: 25px;
+    }
+</style>
+<body>
+    <h1 id="card_header" >Card personal</h1>
+    <div class="card">
+        <div class="profile-sidebar">
+            <img src="{{ kid.profile_image.url }}" alt="">
+            <ul>
+               <h3>Nume</h3>
+                <p>{{kid.name}}</p>
+               <h3>Prenume</h3>
+                <p>{{kid.last_name}}</p>
+               <h3>Mesaj</h3>
+              <a href="#">Trimite mesaj parintelui</a>
+            </ul>            
+         </div>
+        <div class="profile-main">
+            
+                <form action="{%url 'update_kid' kid.id  %}"method="POST">
+                    {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="editeaza date personale">
+                </form>
+            
+            <p class="profile-body" >
+                <div class="mini_header" >
+                    <p>Bonusuri si recompense</p>
+                    {% for motivare in motivari %}
+                    <form action="{% url 'delete_motivare' pk=motivare.id pk2=kid.id %}" method="POST">
+                            {% csrf_token %}
+                     {{motivare.numar}} 
+                     {{motivare.data}}
+                     <input type="submit" class="button_delete" value="delete">
+                     </form>
+                    {% endfor %}
+                </div>
+               
+            </p>
+        
+             <p class="profile-body" >
+                <div class="mini_header" >
+                    <p>Motivari numar si data</p>
+                    {% for motivare in motivari %}
+                    <form action="{% url 'delete_motivare' pk=motivare.id pk2=kid.id %}" method="POST">
+                            {% csrf_token %}
+
+                     {{motivare.numar}} 
+
+                     {{motivare.data}}
+                     <input type="submit" class="button_delete" value="delete">
+                     </form>
+                    {% endfor %}
+                </div>
+               
+            </p>
+            <p class="profile-body" >
+                <div class="mini_header" >
+                    <p>Absente numar si data</p>
+                    {% for abs in absente %}
+                    <form action="{% url 'delete_absenta' pk=abs.id pk2=kid.id %}">
+                        <p>numar</p>    
+                        {{abs.numar}}
+                        <p>data</p>
+                            {{abs.data}}    
+                        
+                        <br>
+                        <input type="submit" class="button_delete" value="delete">
+
+                    </form>
+                    {% endfor %}
+
+                </div>  
+               
+            </p>
+        </div>
+
+        <p class="profile-body" >
+         <div id="right_side" >
+
+          
+                    <div id="first_form" >
+                        <form id="first" action="{%url 'adauga_absenta' kid.id %}" method="POST">
+                            {% csrf_token %}
+                           <h4>Adauga absenta</h4>
+                            {{form_absente.as_p}}
+                            <input type="submit" class="button_add" value="adauga">
+                        </form>
+                        <br>
+                        <form id="second" action="{%url 'adauga_motivare' kid.id %}" method="POST">
+                            {% csrf_token %}
+                            <h4>Adauga motivare</h4>
+                            {{form_motivare.as_p}}
+                            <input class="button_add" type="submit" value="adauga">
+                        </form>
+                    </div>
+                    <div id="second_form">
+                        <form id="third" action="{%url 'adauga_motivare' kid.id %}" method="POST">
+                            {% csrf_token %}
+                            <h4>Adauga bonus</h4>
+                            {{form_motivare.as_p}}
+                            <input class="button_add" type="submit" value="adauga">
+                        </form>
+                    </div>
+                </div>
+        </p>
+    </div>
+    
+</body>
+
+</html>
+{% endblock %}
