@@ -14,12 +14,10 @@
         width: 200px;
         border: 5px solid #010101;
         background-image: linear-gradient(#ffffff, #e1e1e1);
+        margin-right: 2px;
 
     }
-    .profile-sidebar img{
-       margin-left: 30px;
-       margin-top: 20px;
-    }
+   
     .profile-sidebar h3 , .profile-sidebar p .profile-sidebar a {
         text-align: left;
        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,7 +36,7 @@
         text-decoration: none;
     }
     .profile-main{
-        background-image: linear-gradient(#5b5b5b, #1c02c3);
+        background-image: linear-gradient(#00ddff, #1c02c3);
         width: 600px;
         border: 5px solid #ffffff;
         padding: 10px;
@@ -110,7 +108,7 @@
        text-align: center;
        border: 1px solid black;
        background-color: #f7f7f7;
-
+        display: flex;
        padding: 30px;
        margin-top: 15px;
     }
@@ -143,6 +141,22 @@
         font-size:50px;
         bottom: 25px;
     }
+    .field{
+        display: flex;
+        flex-direction: column;
+        margin-top:20px;
+        margin-right: 15px;
+    }
+    .profile-main #submupdate{
+        width: 150px;
+        margin-top: 70px;
+        background-color:white;
+        align-items: center;
+    }
+    .profile-sidebar{
+        display:flex;
+        flex-direction:column;
+    }
 </style>
 <body>
     <h1 id="card_header" >Card personal</h1>
@@ -155,29 +169,44 @@
                <h3>Prenume</h3>
                 <p>{{kid.last_name}}</p>
                <h3>Mesaj</h3>
+               {% if request.user.is_superuser %}
+
               <a href="#">Trimite mesaj parintelui</a>
+              {% endif %}
             </ul>            
          </div>
         <div class="profile-main">
             
                 <form action="{%url 'update_kid' kid.id  %}"method="POST">
                     {% csrf_token %}
-                {{form.as_p}}
-                <input type="submit" value="editeaza date personale">
+                    <div class="field">
+                        <label for="">Nume</label>
+                        {{form.name}}
+                    </div>
+                    <div class="field">
+                        <label for="">Nume Complet</label>
+                        {{form.full_name}}
+                    </div>
+                    <div class="field">
+                        <label for="">Prenume</label>
+                        {{form.last_name}}
+                    </div>
+                    <div class="field">
+                        <label for="">Grupa/Clasa</label>
+                        {{form.group}}
+                    </div>
+                    <div class="field">
+                        <label for="">Varsta</label>
+                        {{form.age}}
+                    </div>
+                    {% if request.user.is_superuser %}
+
+                <input id="submupdate" type="submit" value="editeaza date personale">
+                {% endif %}
                 </form>
             
             <p class="profile-body" >
-                <div class="mini_header" >
-                    <p>Bonusuri si recompense</p>
-                    {% for motivare in motivari %}
-                    <form action="{% url 'delete_motivare' pk=motivare.id pk2=kid.id %}" method="POST">
-                            {% csrf_token %}
-                     {{motivare.numar}} 
-                     {{motivare.data}}
-                     <input type="submit" class="button_delete" value="delete">
-                     </form>
-                    {% endfor %}
-                </div>
+                
                
             </p>
         
@@ -187,11 +216,14 @@
                     {% for motivare in motivari %}
                     <form action="{% url 'delete_motivare' pk=motivare.id pk2=kid.id %}" method="POST">
                             {% csrf_token %}
-
+                        
                      {{motivare.numar}} 
 
                      {{motivare.data}}
+                     {% if request.user.is_superuser %}
+
                      <input type="submit" class="button_delete" value="delete">
+                     {% endif %}
                      </form>
                     {% endfor %}
                 </div>
@@ -202,14 +234,14 @@
                     <p>Absente numar si data</p>
                     {% for abs in absente %}
                     <form action="{% url 'delete_absenta' pk=abs.id pk2=kid.id %}">
-                        <p>numar</p>    
                         {{abs.numar}}
-                        <p>data</p>
                             {{abs.data}}    
                         
                         <br>
-                        <input type="submit" class="button_delete" value="delete">
+                        {% if request.user.is_superuser %}
 
+                        <input type="submit" class="button_delete" value="delete">
+                            {%endif%}
                     </form>
                     {% endfor %}
 
@@ -227,24 +259,23 @@
                             {% csrf_token %}
                            <h4>Adauga absenta</h4>
                             {{form_absente.as_p}}
+                            {% if request.user.is_superuser %}
+
                             <input type="submit" class="button_add" value="adauga">
+                            {%endif%}
                         </form>
                         <br>
                         <form id="second" action="{%url 'adauga_motivare' kid.id %}" method="POST">
                             {% csrf_token %}
                             <h4>Adauga motivare</h4>
                             {{form_motivare.as_p}}
+                            {% if request.user.is_superuser %}
+
                             <input class="button_add" type="submit" value="adauga">
+                            {% endif %}
                         </form>
                     </div>
-                    <div id="second_form">
-                        <form id="third" action="{%url 'adauga_motivare' kid.id %}" method="POST">
-                            {% csrf_token %}
-                            <h4>Adauga bonus</h4>
-                            {{form_motivare.as_p}}
-                            <input class="button_add" type="submit" value="adauga">
-                        </form>
-                    </div>
+                    
                 </div>
         </p>
     </div>

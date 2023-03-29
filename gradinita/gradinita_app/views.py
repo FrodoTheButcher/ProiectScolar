@@ -12,32 +12,17 @@ from .forms import KidsForm  , absente_elevForm , motivari_elevForm
 # Create your views here.
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-
-
+from django.core.mail import send_mail
+from django.conf import settings
+import random
+import string
 
 def navbar(request):
     return render(request,"navbar.html")
 
 def home(request):
     return render(request,"home.html")
-def loginUser(request):
-    if request.method=='POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-        try:
-            user = User.objects.get(email=email)
-        except:
-            pass
-        user = authenticate(request,username=username,password=password,email=email)
-        if user is not None:
-            login(request,user)
-            profile = Profile.objects.get(owner=user)
-            return redirect("home")
-        else:
-            pass
-    return render(request,'login.html')
-    
+
 
 
 def inscrie(request):
@@ -64,8 +49,18 @@ def inscrie(request):
                     profile.save()
                     child.parent=profile
                     child.save()
+
+                    send_mail(
+                        profile.username,
+                        "Contul tau a fost creat!",
+                        settings.EMAIL_HOST_USER,
+                        [profile.email],
+                        fail_silently=False,
+                    )
+
                     return redirect('home')
      return render(request,"inscriere.html",{"form":form})
+
 
 def delete(request,pk):
     user = User.objects.get(id=pk)
@@ -92,23 +87,55 @@ def update(request,pk):
 def changepassword(request,pk):
     form = EditPasswordForm()
     user = User.objects.get(id=pk)
+    profile = Profile.objects.get(owner=user)
     if request.method=='POST':
         form = EditPasswordForm(request.POST)
+
         if form.is_valid():
             password1 = request.POST['password1']  
             old_password=request.POST['oldpassword'] 
             current_password=user.password    
             equality=check_password(old_password,current_password)
             if equality  :    
-                    user.set_password(password1)
-                    user.save()
-                    logout(request)
-                    return redirect('login')
+                messages.success(request, "Un cod pentru parola a fost trimis pe gmail!" )  
+                return redirect('gmail',pk=pk,newpassword=password1)      
+                    
+
             messages.success(request, "Old password must match with the current one!" )  
         else:
             messages.success(request,"Passwords must match")
-    return redirect('account',pk=user.id)
+    return redirect('account',pk=pk)
     
+
+
+def verification_gmail(request,pk,newpassword):
+    user = User.objects.get(id=pk)
+    profile = Profile.objects.get(owner=user)
+    hash =random()
+    send_mail(
+            profile.username,
+              hash,
+             settings.EMAIL_HOST_USER,
+            [profile.email],
+             fail_silently=False,
+    )
+   
+    if request.method=='POST':
+        form = request.POST['email_verification']
+        
+        if hash == form:
+               user.set_password(newpassword)
+               user.save()
+               messages.success(request,"You password is changed!")
+               return redirect('account',pk)
+
+        else:
+               messages.success(request,"Gmail verification code is wrong!")
+               return redirect('account',pk)
+
+    return render(request,"verificare.html")
+
+
 def catalog(request):
     
     pag = int(0)
@@ -136,9 +163,10 @@ def catalog(request):
 def account(request,pk):
     user = User.objects.get(id=pk)
     profile = Profile.objects.get(owner=user)
+    kid = Kids.objects.filter(parent=profile)
     edit_password = EditPasswordForm()
     formprofile = ProfileForm(instance=profile)
-    context = {"profile" : profile,"password":edit_password,"formprofile":formprofile}
+    context = {"profile" : profile,"password":edit_password,"formprofile":formprofile,"kid":kid}
     return render(request,"account.html",context)
 
 def kid_account(request,pk):
@@ -157,6 +185,8 @@ def kid_register(request):
         form = KidsForm(request.POST)
         if form.is_valid():
             kid = form.save(commit=False)
+            kid.absente=0
+            kid.motivari=0
             kid.save()
             absente = absente_elev.objects.create(
                 owner = kid,
@@ -178,11 +208,10 @@ def kid_account(request,pk):
     return render(request,"account_kid.html",{"kid":chield})
 
 def request_kid(request,pk):
-    if request.method=='POST':
         parent = User.objects.get(id=pk)
         profile = Profile.objects.get(owner=parent)
         kid = Kids.objects.get(parent=profile)
-        return render(request,"account_kid.html",{"kid":kid})
+        return render(request,"account_kid.html",kid.id,{"kid":kid})
 
 def absente_motivari(request,pk):
     kid =Kids.objects.get(id=pk)
@@ -204,6 +233,24 @@ def update_kid(request,pk):
        if form.is_valid():
             form.save()
             return redirect('absente_motivari',pk=pk)
+
+def adauga_copil_PARINTE(request,pk):
+    user = User.objects.get(id=pk)
+    parent=Profile.objects.get(owner=user)
+    if request.method=='POST':
+        fullname=request.POST['fullname']
+        try:
+            kid = Kids.objects.get(full_name=fullname)
+        except:
+            kid=None
+            messages.success(request,"KID NAME INCORRECT")
+            return redirect("account",pk=pk)
+
+        if kid is not None:
+            kid.parent=parent
+            kid.save()
+            messages.success(request,"KID ADDED ")
+            return redirect("account",pk=pk)
 
 def delete_absenta(request,pk,pk2):
     absenta = absente_elev.objects.get(id=pk)
@@ -236,7 +283,7 @@ def adauga_motivare(request,pk):
                 numar=request.POST['numar']
             )
             motivare.save()
-            kid.motivari=motivare.numar
+            kid.motivari=int(motivare.numar)+int(kid.motivari)
             kid.save()
             return redirect("absente_motivari",pk=pk)
 
@@ -244,6 +291,7 @@ def adauga_motivare(request,pk):
            
 def about_us(request):
     return render(request,"aboutus.html")
+
 
 
 
@@ -259,7 +307,7 @@ def adauga_absenta(request,pk):
                 numar=request.POST['numar']
             )
             absenta.save()
-            kid.absente=absenta.numar
+            kid.absente=int(absenta.numar)+int(kid.absente)
             kid.save()
             return redirect("absente_motivari",pk=pk)
 
@@ -269,3 +317,66 @@ def adauga_absenta(request,pk):
 
 def page_kids(request):
     return render(request,"page1.html")
+
+
+
+
+
+
+
+####PASSWORD FIELDS
+def loginUser(request):
+    password = EditPasswordForm()
+    if request.method=='POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+        try:
+            user = User.objects.get(email=email)
+        except:
+            pass
+        user = authenticate(request,username=username,password=password,email=email)
+        if user is not None:
+            login(request,user)
+            profile = Profile.objects.get(owner=user)
+            return redirect("home")
+        else:
+            pass
+    return render(request,'login.html',{'password':password})
+    
+
+def password_lost(request):
+    if request.method=='POST':
+        password_form=EditPasswordForm(request.POST)
+
+        if password_form.is_valid():
+            password1 = request.POST['password1']
+            email = request.POST['email']
+            messages.success(request, "Un cod pentru parola a fost trimis pe gmail!" )  
+            length = 10
+            characters = string.ascii_letters + string.digits
+            code = ''.join(random.choice(characters) for i in range(length))
+            send_mail(
+                        "Password verification",
+                        code,
+                        settings.EMAIL_HOST_USER,
+                        [email],
+                        fail_silently=False,
+             )
+            return redirect('password_lostGmail',password=password1,email=email,code=code)
+        messages.success(request,"Passwords must match!")
+        return redirect('login')
+
+def password_lost_EmailVerif(request,password,email,code):
+    if request.method=='POST':
+        gmail_code = request.POST['code']
+        if code == gmail_code:
+            user = User.objects.get(email=email)
+            messages.success(request,"PASSWORD WAS SUCCESFULLY CHANGED!")
+            user.set_password(password)
+            user.save()
+            login(request,user)
+            return redirect("account",user.id)
+        messages.success(request,"Gmail code is wrong")
+        return redirect('login')
+    return render(request,"verificare_passwordCode.html")

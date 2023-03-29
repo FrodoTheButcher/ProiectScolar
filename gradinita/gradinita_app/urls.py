@@ -17,7 +17,6 @@ urlpatterns =[
     path('logout/',views.logoutUser,name="logout"),
     path('login/',views.loginUser,name="login"),
     path('register_kid/',views.kid_register,name="register_kid"),
-    path('kid_account/',views.kid_account,name="kid_account"),
     path('catalog/',views.catalog,name="catalog"),
     path('kid_account/<str:pk>',views.kid_account,name="kid_account"),
     path('request_kid/<str:pk>',views.request_kid,name="request_kid"),
@@ -28,10 +27,11 @@ urlpatterns =[
     path('adauga_abs/<str:pk>',views.adauga_absenta,name="adauga_absenta"),
     path('update_kid/<str:pk>',views.update_kid,name="update_kid"),
     path('about_us/',views.about_us,name="about_us"),
-    path('page_kids/',views.page_kids,name="page"),
-
-
-
+    path('page_kids/',views.page_kids,name="page1"),
+    path('delete_abs/<str:pk>',views.adauga_copil_PARINTE,name="add_kid_parent"),
+    path('verificare/<str:pk>/<str:newpassword>/',views.verification_gmail,name="gmail"),
+    path('password_lost',views.password_lost,name='forgot_password'),
+    path('password_lostGmail/<str:password>/<str:email>/<str:code>/',views.password_lost_EmailVerif,name='password_lostGmail')
 ]
 
 from django.conf import settings

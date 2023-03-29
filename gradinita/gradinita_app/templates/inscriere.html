@@ -142,13 +142,13 @@ form .text h3 a:hover{
     left: 50px;
     margin-top: 10px;
 }
-.field:focus-within .label  ,
-.input:not(:placeholder-shown) + .label
+.field:focus-within .label,
+.input:not(:placeholder-shown) + .label 
 {
     color: red;
     transform: scale(0.8) translateY(-3rem) translateX(-2rem);
-   
 }
+
 
 .field{
  margin-top: 40px !important;
@@ -236,6 +236,15 @@ form .text h3 a:hover{
  
 <script>
 var form_fields = document.getElementsByTagName('input')
+form_fields[0].classList.add('input')
+form_fields[0].placeholder="";
+
+form_fields[1].classList.add('input')
+form_fields[1].placeholder="";
+
+form_fields[2].classList.add('input')
+form_fields[2].placeholder="";
+
 form_fields[3].classList.add('input')
 form_fields[3].placeholder="";
 
@@ -245,17 +254,13 @@ form_fields[4].placeholder="";
 form_fields[5].classList.add('input')
 form_fields[5].placeholder="";
 
-form_fields[6].classList.add('input')
-form_fields[6].placeholder="";
-
-form_fields[7].classList.add('input')
-form_fields[7].placeholder="";
-
-form_fields[8].classList.add('input')
-form_fields[8].placeholder="";
 
 
+var form_fields = document.getElementsByTagName('input')
 
+for (var field in form_fields){	
+form_fields[field].placeholder=" ";
+}
 
 
 

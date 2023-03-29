@@ -27,6 +27,7 @@ body{
   background: #4070f4;
 }
 .wrapper{
+  z-index: 10;
   position: relative;
   max-width: 430px;
   width: 100%;
@@ -40,6 +41,8 @@ body{
   font-size: 22px;
   font-weight: 600;
   color: #333;
+  left: 60px;
+  bottom: 15px;
 }
 .wrapper h2::before{
   content: '';
@@ -135,12 +138,12 @@ form .text h3 a:hover{
     position: relative;
     display: block;
     height: 4px;
-    width: 100%;
-    background:#d16dff;
+    width: 80%;
+    left: 7px;
+    background-image:linear-gradient(to left,#a5e7f7,#06197a);
     transform: scaleX(0);
     transform-origin: 0%;
     transition: transform 500ms ease;
-    top: 2px;
 }
 .field:focus-within{
     border-color:transparent;
@@ -158,7 +161,7 @@ form .text h3 a:hover{
     margin-top: 10px;
 }
 .field:focus-within .label  ,
-.input:not(:placeholder-shown) + .label
+.input:not(:placeholder-shown) +label
 {
     color: red;
     transform: scale(0.8) translateY(-3rem) translateX(-2rem);
@@ -168,10 +171,104 @@ form .text h3 a:hover{
 .field{
  margin-top: 40px !important;
 }
+
+.field2{
+  width: 100%;
+  position: relative;
+}
+
+.label2 {
+  position: relative;
+  right: 50px;
+}
+.input2 {
+  overflow: hidden;
+  width: 80%;
+  position: relative;
+  right: 25px;
+  
+}
+
+
+
+.field2:focus-within::after{
+  transform: scaleX(1);
+}
+
+
+.label2{
+  position: absolute;
+  left: 0px;
+  font-size: 10px;
+  color: black;
+  transition: all 0.5s;
+  z-index: 5;
+  top: 2px;
+}
+
+.field2:focus-within .label2  ,
+.input2:not(:placeholder-shown) + .label2
+{
+    color: red;
+    transform: scale(0.8) translateY(-0.2rem) translateX(-2rem);
+}
+.field2{
+  position: relative;
+  left: 25px;
+  top: 5px;
+}
+.label2{
+  pointer-events: none;
+}
+#password_pop #buttonpsw{
+  background-color: blue;
+  width: 90px;
+  border-radius: 10%;
+  color: white;
+  border:2px solid blue;
+  transition: all 0.3s;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+#password_pop #buttonpsw:hover{
+  background-color: rgb(58, 58, 243);
+}
+body{
+  overflow: hidden;
+}
+#password_pop{
+  background-color: white;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  left: 50px;
+  transform: translateX(-400px);
+    transition: all 0.5s;
+  z-index: 5;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
+}
+
+.show_password{
+  transform: translateX(0px) !important;
+}
+#button_pop_password{
+  cursor: pointer;
+  position: relative;
+  top: 15px;
+  right: 10px;
+}
 </style>
 
 
 <body>
+  {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
   {% block content %}
 {% endblock %}
   <div class="wrapper">
@@ -209,17 +306,63 @@ form .text h3 a:hover{
         <h3>I accept all terms & condition</h3>
       </div>
       <div class="input-box button">
-        <input type="submit" value="Register Now">
+        <input type="submit" value="Login Now">
       </div>
       <div class="text">
         <h3>Not having an account? <a href="{% url 'inscrie'%}">Register now</a></h3>
+        <p id="button_pop_password">Forgot password?</p>
+
       </div>
     
     </form>
-  </div>
 
+  </div>
+  <form id="password_pop" action="{% url 'forgot_password'  %}" method="POST">
+    {% csrf_token %}
+    <div class="field2">
+      {{password.password1}}
+      <label class="label2" for="">Password1</label>   
+    </div>
+    <div class="field2">
+      {{password.password2}}
+      <label class="label2" for="">Password2</label>
+    </div>
+   <div class="field2">
+    {{password.email}}
+    <label class="label2" for="">Email</label>
+   </div>
+   
+    <input id="buttonpsw" type="submit" value="submit">
+
+  </form>
 </body>
 </html>
 
+<script>
+
+  
+  var psw1=document.getElementById("id_password1");
+  psw1.classList.add('input2')
+
+  var psw2=document.getElementById("id_password2");
+  psw2.classList.add('input2')
+
+  var email=document.getElementById("id_email");
+  email.classList.add('input2')
+
+  const btnpassword = document.getElementById("button_pop_password");
+  btnpassword.addEventListener("click",()=>{
+    document.getElementById("password_pop").classList.toggle("show_password");
+    console.log(1);
+
+  })
+
+  var form_fields = document.getElementsByTagName('input')
+
+  for (var field in form_fields){	
+form_fields[field].placeholder=" ";
+}
+  
+</script>
 
 

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 
     <!DOCTYPE html>
 <html lang="en">
@@ -16,25 +9,37 @@
     <title>Document</title>
 </head>
 <style>
+    *{
+        overflow: hidden;
+    }
     #left_section
     {
         background-color: white;
         width: 30%;
         height: 100vh;
         position: relative;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
     }
     #bar
     {
         background-color: rgb(44, 82, 252);
         width: 5%;
         display: flex;
+        height: 100vh;
         flex-direction: column;
         align-items: center;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
     }
+    
     #bar svg{
        margin-top: 50px;
        color: white;
        margin-right: 10px;
+       
     }
   #bar  #last_svg
     {
@@ -45,10 +50,14 @@
         border-radius: 50%;
         margin-top: auto;
         bottom: 30px;
+        overflow: hidden;
+
     }
     #bar #wrapper_last
     {
         align-items: center;
+        overflow: hidden;
+
     }
     #bar #first_svg svg
     {
@@ -56,6 +65,8 @@
         bottom: 30px;
         width: 40px;
         height: 40px;
+        overflow: hidden;
+
     }
     #bar #first_svg
     {
@@ -64,26 +75,33 @@
         text-align: center;
 
         height: 75px;
+        overflow: hidden;
+
     }
     #right_section
     {
-        width: 70%;
+        width: 65%;
         height: 100vh;
         background-color: rgb(248, 248, 248);
         position: relative;
+        padding: 0;
+        margin: 0;
+        overflow: visible !important;
     }
     #right_section h1{
         font-weight: bold;
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        overflow: visible;
+
     }
     #wrapper
     {
-        position: relative;
         display: flex;
         flex-direction: row;
-        margin-bottom:0px;
-        width:100vw;
-        height: 100vh;
+      margin: 0;
+      border: 0;
+        overflow: visible;
+        position: relative;
     }
     .field
     {
@@ -126,21 +144,26 @@
     }
     #upper 
     {
+        overflow: visible;
         position: relative;
         left: 100px;
+        overflow: visible;
     }
     #upper h1{
         line-height: 35px;
-
+        overflow: visible;
     }
     #upper #mini_header{
         line-height: 5px;
+        overflow: visible;
     }
+    
     #upper #mini_header small{
         color: rgb(145, 144, 144);
     }
     #upper #mini_header h3{
         color: rgb(36, 36, 36);
+        overflow: visible;
     }
     #first_section
     {
@@ -148,6 +171,7 @@
         display: flex;
         left: 100px;
         bottom: 20px;
+        overflow: visible;
     }
    
     .field2{
@@ -155,36 +179,54 @@
         position: relative;
         top: 50px;
         padding-right: 100px;
+        overflow: visible;
+
     }
     .field2 input{
         width: 370px;
         height: 28px;
+        overflow: visible;
+
     }
     #wrapper_first_section
     {
         display: flex;
         flex-direction: column;
+        overflow:visible;
     }
-
+    .field2 p{
+        overflow: visible;
+    }
+    .title_field p{
+        overflow: visible;
+    }
     #second_section , #third_section
     {
         position: relative;
         left: 100px;
         top: 65px;
+        overflow: visible;
+
     }
     #third_section
     {
         position: relative;
         top: 100px;
         align-items: center;
+        overflow: visible;
+
     }
     #third_section input{
         width: 100px;
         border-radius: 10%;
+        overflow: visible;
+
     }
     #third_section img{
         width: 50px;
         height: 50px;
+        overflow: visible;
+
         border-radius: 50%;
     }
    
@@ -192,23 +234,27 @@
         position: relative;
         top: 100px;
         align-items: center;
+        overflow: visible;
     }
     .fieldunu
     {
         display: flex;
         margin: 15px;
-        
+           
     }
     .fielddoi
     {
         display: flex;
         margin: 15px;
         margin-top: 80px;
+        overflow: visible;
+
     }
     .fielddoi  .wrap_field_f .title_field svg,
     .fieldunu  .wrap_field_f .title_field svg
     {
         margin-right: 10px;
+        overflow: visible;
     }
    
 
@@ -218,10 +264,14 @@
         left: 100px;
         top: 130px;
         line-height: 5px;
+        overflow: visible;
+
     }
     #fourth_section input
     {
         width: 300px;
+        overflow: visible;
+
         
     }
     #dialog ,#dialog2{
@@ -248,6 +298,10 @@
         font-weight: bold;
         position: relative;
         bottom: 10px;
+        overflow: visible;
+    }
+    .fields input{
+        overflow: visible;
     }
     #dialog{
         height: 600px; 
@@ -325,7 +379,9 @@
     bottom: 10px !important;
     
 }
-
+#form_headder h1{
+    overflow: visible;
+}
 #dialog2 button{
     background-color: rgb(0, 47, 255);
     width: 120px;
@@ -342,8 +398,8 @@
     color: white;
     border-radius: 10%;
     position: relative;
-    top: 20px;
-
+    overflow:visible !important;
+    
 }
 
 #dialog2 .fields{
@@ -369,6 +425,86 @@
     transform: translateY(-2px);
     background-color: rgb(50, 50, 249);
 }
+#list{
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.show_list
+{
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+#activity{
+    cursor: pointer;
+}
+#show_kids{
+    display: flex;
+    z-index: 200 !important;
+}
+#show_kids p{
+position: absolute;
+z-index: 00 !important;
+background-color: white;
+left: 170px;
+}
+.kid_field{
+    opacity: 0;
+}
+
+#kid_popUp
+{
+    z-index: 1;
+    text-align: center;
+    position: absolute;
+    align-items: center;
+    pointer-events: none;
+    background-color: white;
+    left: 0;
+    top: 10px;
+    right: 0;
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    max-width: fit-content;
+    opacity: 0;
+    transition: all 0.5s;
+    transform: translateY(-500px);
+    border: 3px solid black;
+    border-radius: 10%;
+    padding: 10px;
+}
+#kid_popUp input{
+    margin: 10px;
+}
+.kid_popUpShow
+{
+    transform: translateY(200px) !important;
+    opacity: 1 !important;
+}
+.wrapper_opacity
+{
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+}
+#kid_popUp a,
+#kid_popUp input{ 
+pointer-events: all;
+}
+#close_btn{
+    pointer-events: all !important;
+}
+#elements_kid{
+    display: flex;
+    flex-direction: column;
+}
+#kid_btn{
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    pointer-events: all;
+    cursor: pointer;
+}
 </style>
 {% if messages %}
 <ul class="messages">
@@ -384,7 +520,7 @@
             <h1>Schimba date cont</h1>
 
         </div>
-        <form name="upgrade_form" action="{%url 'update_profile' request.user.id %}" method="POST">
+        <form name="upgrade_form" action="{%url 'update_profile' request.user.id %}" method="POST"  enctype="multipart/form-data">
             {% csrf_token %}
 
         <div class="fields">
@@ -421,6 +557,10 @@
         <input name="upgrade_form" type="submit" value="salveaza">
         
     </div>
+
+   
+
+
         </form>
         {% for field in form %}
         {% if field.help_text %}
@@ -431,7 +571,7 @@
         <button id="close_dialog">Inchide</button>
         </div>
     </dialog>
-    <dialog id="dialog2" open  >
+    <dialog id="dialog2"   >
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path fill="currentColor" d="M6 22q-.825 0-1.412-.587Q4 20.825 4 20V10q0-.825.588-1.413Q5.175 8 6 8h9V6q0-1.25-.875-2.125T12 3q-1.025 0-1.812.612q-.788.613-1.063 1.538q-.125.375-.387.612Q8.475 6 8.125 6q-.5 0-.8-.338q-.3-.337-.2-.762Q7.5 3.225 8.85 2.112Q10.2 1 12 1q2.075 0 3.538 1.462Q17 3.925 17 6v2h1q.825 0 1.413.587Q20 9.175 20 10v10q0 .825-.587 1.413Q18.825 22 18 22Zm0-2h12V10H6v10Zm6-3q.825 0 1.413-.587Q14 15.825 14 15q0-.825-.587-1.413Q12.825 13 12 13q-.825 0-1.412.587Q10 14.175 10 15q0 .825.588 1.413Q11.175 17 12 17Zm-6-7v10v-10Z"/></svg>
         <h1>Schimba parola</h1>
         <form name="change_password" action="{% url 'change_password' request.user.id %}"  method="POST">
@@ -450,23 +590,41 @@
             <label for="">Parola veche</label>
         </div>
       
+      
         <input id="inputbtn" name="schimba_parola" type="submit" value="salveaza">
         </form>
         <button id="close_dialog2">Inchide</button>
 
     </dialog>
-
+    <div id="kid_popUp">
+        <div id="elements_kid">
+            {% for k in kid %}
+            <a href="{% url 'absente_motivari' k.id%}">{{k.full_name}}</a>
+            {% endfor %}
+        </div>
+       
+        <form method="POST" action="{% url 'add_kid_parent' request.user.id  %}">
+            {% csrf_token %}
+            <p>Ai inca un copil inscris?</p>
+            <input name="fullname"  type="text" placeholder="Full Name">
+            <input type="submit" value="submit">
+        </form>
+        <button id="close_btn" >Close</button>
+    </div>
     <div id="wrapper" >
+       
         <div id="bar">
             <div id="first_svg" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-7-3.8v-6L1 9l11-6l11 6v8h-2v-6.9l-2 1.1v6Zm0-8.3L18.85 9L12 5.3L5.15 9Zm0 6.025l5-2.7V12.25L12 15l-5-2.75v3.775Zm0-6.025Zm0 2.25Zm0 0Z"/></svg>
+             <a href="{% url 'home' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21l-7-3.8v-6L1 9l11-6l11 6v8h-2v-6.9l-2 1.1v6Zm0-8.3L18.85 9L12 5.3L5.15 9Zm0 6.025l5-2.7V12.25L12 15l-5-2.75v3.775Zm0-6.025Zm0 2.25Zm0 0Z"/></svg></a>  
             </div>
             
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 11h8v2H5v3l-5-4l5-4v3zm-1 7h2.708a8 8 0 1 0 0-12H4a9.985 9.985 0 0 1 8-4c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.985 9.985 0 0 1-8-4z"/></svg>
-
+            <a href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>            </a>
+            
+            <div >
+                <a href=""> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>            </a>
+            </div>
+           
+            <a href="{% url 'logout'  %}">            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 11h8v2H5v3l-5-4l5-4v3zm-1 7h2.708a8 8 0 1 0 0-12H4a9.985 9.985 0 0 1 8-4c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.985 9.985 0 0 1-8-4z"/></svg>            </a>
           
             <img id="last_svg" src="{{ profile.profile_image.url }}" alt="">
           
@@ -475,7 +633,7 @@
             <div class="field">
                 <div class="title_field">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
-                    <p>Acasa</p>
+                    <a href="{%url 'home'%}">Acasa</a>
                 </div>
                <div class="content_field">
                 <small>Click pe paragraph pentru main page</small><br>
@@ -485,7 +643,11 @@
             </div>
             <div class="field">
                 <div class="title_field">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-1.99.9-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2zm-4.42 4.8L12 14.5l-3.58 2.3l1.08-4.12l-3.29-2.69l4.24-.25L12 5.8l1.54 3.95l4.24.25l-3.29 2.69l1.09 4.11z"/></svg>                    <p>Activitati</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12c0-1.1.9-2 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-1.99.9-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2zm-4.42 4.8L12 14.5l-3.58 2.3l1.08-4.12l-3.29-2.69l4.24-.25L12 5.8l1.54 3.95l4.24.25l-3.29 2.69l1.09 4.11z"/></svg>              
+                      <a id="activity" >Activitati</a>
+                      <ol id="list" >
+                        <li> <a href="{% url 'page1' %}">page 1</a></li>
+                      </ol>
                 </div>
                <div class="content_field">
                 <small>Click pe paragraph pentru main page</small><br>
@@ -496,7 +658,7 @@
             <div class="field">
                 <div class="title_field">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.75 19.13c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 11.25c-1.24 0-2.25-.84-2.25-1.87c0-1.04 1.01-1.88 2.25-1.88s2.25.84 2.25 1.88c0 1.03-1.01 1.87-2.25 1.87m-3.75 7.88c-.83 0-1.5-.84-1.5-1.88c0-1.03.67-1.87 1.5-1.87s1.5.84 1.5 1.87c0 1.04-.67 1.88-1.5 1.88M12 8.25c.41 0 .75.34.75.75s-.34.75-.75.75s-.75-.34-.75-.75s.34-.75.75-.75M18.75 12c-.32 0-.63.07-.91.2c-.48-.61-1.13-1.13-1.91-1.53c.57-.8.91-1.77.91-2.82v-.06c1.09-.23 1.91-1.2 1.91-2.37c0-1.33-1.09-2.42-2.42-2.42c-.69 0-1.33.29-1.75.75a4.813 4.813 0 0 0-5.16 0C9 3.29 8.36 3 7.67 3C6.34 3 5.25 4.09 5.25 5.42c0 1.16.82 2.13 1.9 2.37v.06c0 1.05.35 2.03.91 2.82c-.77.4-1.42.92-1.9 1.53A2.24 2.24 0 0 0 3 14.25c0 1.25 1 2.25 2.25 2.25h.06c-.04.24-.06.5-.06.75c0 2.07 1.34 3.75 3 3.75c1.01 0 1.9-.63 2.45-1.59c.42.06.85.09 1.3.09c.45 0 .88-.03 1.3-.09c.55.96 1.44 1.59 2.45 1.59c1.66 0 3-1.68 3-3.75c0-.25-.02-.51-.06-.75h.06c1.25 0 2.25-1 2.25-2.25S20 12 18.75 12"/></svg>                 
-                       <p>Copil</p>
+                     <button id="kid_btn">Copil</button>
                 </div>
                <div class="content_field">
                 <small>Click pe paragraph pentru main page</small><br>
@@ -504,6 +666,7 @@
                </div>
                 
             </div>
+            
             <div class="field">
                 <div class="title_field">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-2.05 0-3.875-.788q-1.825-.787-3.187-2.15q-1.363-1.362-2.15-3.187Q2 14.05 2 12q0-2.075.788-3.887q.787-1.813 2.15-3.175Q6.3 3.575 8.125 2.787Q9.95 2 12 2q2.075 0 3.887.787q1.813.788 3.175 2.151q1.363 1.362 2.15 3.175Q22 9.925 22 12q0 2.05-.788 3.875q-.787 1.825-2.15 3.187q-1.362 1.363-3.175 2.15Q14.075 22 12 22Zm0-2.05q.65-.9 1.125-1.875T13.9 16h-3.8q.3 1.1.775 2.075q.475.975 1.125 1.875Zm-2.6-.4q-.45-.825-.787-1.713Q8.275 16.95 8.05 16H5.1q.725 1.25 1.812 2.175Q8 19.1 9.4 19.55Zm5.2 0q1.4-.45 2.487-1.375Q18.175 17.25 18.9 16h-2.95q-.225.95-.562 1.837q-.338.888-.788 1.713ZM4.25 14h3.4q-.075-.5-.113-.988Q7.5 12.525 7.5 12t.037-1.012q.038-.488.113-.988h-3.4q-.125.5-.188.988Q4 11.475 4 12t.062 1.012q.063.488.188.988Zm5.4 0h4.7q.075-.5.113-.988q.037-.487.037-1.012t-.037-1.012q-.038-.488-.113-.988h-4.7q-.075.5-.112.988Q9.5 11.475 9.5 12t.038 1.012q.037.488.112.988Zm6.7 0h3.4q.125-.5.188-.988Q20 12.525 20 12t-.062-1.012q-.063-.488-.188-.988h-3.4q.075.5.112.988q.038.487.038 1.012t-.038 1.012q-.037.488-.112.988Zm-.4-6h2.95q-.725-1.25-1.813-2.175Q16 4.9 14.6 4.45q.45.825.788 1.712q.337.888.562 1.838ZM10.1 8h3.8q-.3-1.1-.775-2.075Q12.65 4.95 12 4.05q-.65.9-1.125 1.875T10.1 8Zm-5 0h2.95q.225-.95.563-1.838q.337-.887.787-1.712Q8 4.9 6.912 5.825Q5.825 6.75 5.1 8Z"/></svg>                    <p>Limbaj</p>
@@ -669,5 +832,30 @@
         bddy.style.opacity="1";
 
     });
+
+
+  
+
+const list=document.getElementById("activity");
+list.addEventListener("click",()=>{
+    const show_list = document.getElementById("list");
+    show_list.classList.toggle("show_list");
+});
+
+
+const kid=document.getElementById("kid_btn");
+kid.addEventListener("click",()=>{
+    console.log(1);
+    document.getElementById("kid_popUp").classList.toggle("kid_popUpShow");
+    document.getElementById("wrapper").classList.toggle("wrapper_opacity");
+});
+
+const closekid=document.getElementById("close_btn");
+closekid.addEventListener("click",()=>{
+    console.log(1);
+    document.getElementById("kid_popUp").classList.toggle("kid_popUpShow");
+    document.getElementById("wrapper").classList.toggle("wrapper_opacity");
+});
+
 
 </script>

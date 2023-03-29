@@ -10,12 +10,12 @@ class Profile(models.Model):
     kid = models.CharField(max_length=100,null=True,blank=False,default="NONE")
     username = models.CharField(max_length=100,default="None")
     last_name = models.CharField(max_length=100,default="None")
-    email = models.EmailField(blank=True,null=True)
+    email = models.EmailField(blank=True,null=True,unique=True)
     profile_image=models.ImageField(null=True,blank=True,upload_to='profiles/',default='default.png')
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
    
     def __str__(self):
-        return str(self.name)
+        return str(self.email)
 
 class Kids(models.Model):
     parent = models.ForeignKey(Profile,on_delete=models.DO_NOTHING,null=True,blank=True)

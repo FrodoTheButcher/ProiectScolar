@@ -26,7 +26,7 @@ class ProfileForm(ModelForm):
 class EditPasswordForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['password1','password2']
+        fields = ['password1','password2','email']
         def __init__(self,*args,**kwargs):
             super(CustomUserCreationForm,self).__init__(*args,**kwargs)
 
