@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'poppins', 'sans-serif' ;
+                
+            }
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #erori{
+                position: fixed;
+                top:25px;
+                left:50px;
+
+                width: 20%;
+                height: 10%;
+                overflow: auto;
+
+                padding-top: 10px;
+                padding-left: 20px;
+
+                border: 2px solid black;
+                border-radius: 10px;
+                box-shadow: 6px 8px 10px rgba(51, 50, 51, 0.7);
+
+                transition: all .5s;
+            }
+            .message{
+                list-style: disc;
+                margin: 3px;
+            }
+            #erori:hover{
+                box-shadow: 13px 12px 14px rgba(51, 50, 51, 0.7);
+                transform: translateY(-2px);
+                font-weight: bold;
+            }
+            #sectiune{
+                width: 45%;
+                height: 45%; 
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border: 2px solid black;
+                border-radius: 10px;
+                box-shadow: 7-px 8px 10px rgba(51, 50, 51, 0.7);
+                transition: all .5s;
+
+            }
+            #enterdata{
+                display: grid;
+                margin: 5px;
+                width: 55%;
+                height: 60%;
+            }
+            input{
+                margin:5px;
+            }
+            #cod{
+                width: 100%;
+                height: 40px;
+            }
+            label{
+                margin: 5px;
+            }
+            #title1{
+                margin-bottom: 25px;
+                text-align: center;
+                color: rgb(0, 0, 0);
+                
+            }
+            form>div>h1{
+                margin-bottom: 10px;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        
+        <section id="erori">
+            <ul class="messages">
+                <li class="message">test</li>
+                <li class="message">test</li>
+            </ul>
+        
+        </section>
+
+        <section id="sectiune">
+           
+           
+            <form action="" method="POST" id="enterdata">
+                <div id ="title1">
+                    <h1>We sent your code! </h1>
+                    <h3>Enter your code below!</h3>
+                </div>
+                <input id="cod" type="text" name="code" placeholder="Enter confirmation code" >
+                <label for="">Enter code</label>
+                <input type="submit" value="submit">
+            </form>
+        </section>
+    </body>
+</html>
