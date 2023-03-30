@@ -18,7 +18,7 @@ class Profile(models.Model):
         return str(self.email)
 
 class Kids(models.Model):
-    parent = models.ForeignKey(Profile,on_delete=models.DO_NOTHING,null=True,blank=True)
+    parent = models.ForeignKey(Profile,on_delete=models.SET_NULL,null=True,blank=True)
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
     name = models.CharField(max_length=100)
     age = models.CharField(max_length=10)
