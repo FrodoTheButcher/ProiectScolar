@@ -54,9 +54,10 @@
                 justify-content: center;
                 align-items: center;
 
-                border: 2px solid black;
+                border: 2px solid rgba(0, 0, 0, 0.116);
                 border-radius: 10px;
-                box-shadow: 7-px 8px 10px rgba(51, 50, 51, 0.7);
+                background: #fff;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
                 transition: all .5s;
 
             }
@@ -66,8 +67,19 @@
                 width: 55%;
                 height: 60%;
             }
+            #title1{
+                text-align: center;
+                color: rgb(0, 0, 0);
+                height: 100px;
+                
+            }
+            form>div>h1{
+                margin-bottom: 30px;
+                font-size: xx-large;
+            }
             input{
-                margin:5px;
+                border-radius: 6px;
+                text-align: center;
             }
             #cod{
                 width: 100%;
@@ -76,14 +88,21 @@
             label{
                 margin: 5px;
             }
-            #title1{
-                margin-bottom: 25px;
-                text-align: center;
-                color: rgb(0, 0, 0);
-                
+         
+           
+            #submitbutton{
+                color: #fff;
+                letter-spacing: 1px;
+                border: none;
+                background: #4070f4;
+                cursor: pointer;
+                font-size: 17px;
+                font-weight: 400;
+                border-radius: 6px;
+                transition: all 0.3s ease;
             }
-            form>div>h1{
-                margin-bottom: 10px;
+            #submitbutton:hover{
+                background: #0e4bf1;
             }
             
         </style>
@@ -108,8 +127,7 @@
                     <h3>Enter your code below!</h3>
                 </div>
                 <input id="cod" type="text" name="code" placeholder="Enter confirmation code" >
-                <label for="">Enter code</label>
-                <input type="submit" value="submit">
+                <input id="submitbutton" type="submit" value="Submit">
             </form>
         </section>
     </body>
