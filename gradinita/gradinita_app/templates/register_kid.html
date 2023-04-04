@@ -135,6 +135,9 @@ form .text h3 a:hover{
       <div class="input-box">
         {{form.group}}
     </div>
+      <div class="input-box">
+        {{form.key}}
+      </div>
  
     
      
@@ -163,7 +166,10 @@ form .text h3 a:hover{
     form_fields[5].placeholder='group...';
     form_fields[5].classList.add('place')
     
-    
+    form_fields[6].placeholder='id...';
+    form_fields[6].classList.add('place')
+    const id= document.getElementById("id_kid");
+    id.placeholder="id.."
     
     
     for (var field in form_fields){	

@@ -13,14 +13,17 @@ class Profile(models.Model):
     email = models.EmailField(blank=True,null=True,unique=True)
     profile_image=models.ImageField(null=True,blank=True,upload_to='profiles/',default='default.png')
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
-   
+    phone=models.CharField(max_length=15,blank=True,null=True,default="none")
     def __str__(self):
         return str(self.email)
+    
+
 
 class Kids(models.Model):
     parent = models.ForeignKey(Profile,on_delete=models.SET_NULL,null=True,blank=True)
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
     name = models.CharField(max_length=100)
+    key = models.CharField(max_length=10000,null=True,blank=True)
     age = models.CharField(max_length=10)
     group = models.CharField(max_length=10)
     profile_image=models.ImageField(null=True,blank=True,upload_to='profiles/',default='default.png')

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% include "navbar.html" %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  :root {
+  --color-sky-top: #3e365d;
+  --color-sky-bottom: #df9a91;
+  --color-main: #403149;
+  --color-heart: red;
+  --size-viewport: 85%;
+}
+
+
+
+
+#hearts-alpaca {
+  bottom: 53%;
+  left: 70%;
+}
+
+.hearts {
+  width: 5%;
+  min-width: 100px;
+  height: 25%;
+  min-height: 300px;
+  position: absolute;
+  z-index: 10;
+}
+
+.heart {
+  background-color: var(--color-heart);
+  position: absolute;
+  height: 20%;
+  min-height: 15px;
+  width: 20%;
+  min-width: 15px;
+  opacity: 0;
+  -webkit-mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>');
+          mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>');
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+          mask-position: bottom;
+  animation: floating-heart 10s infinite cubic-bezier(0.5, 0.5, 0.5, 0.5);
+}
+
+.heart:nth-child(1) {  
+  animation-delay: 1s;
+}
+
+.heart:nth-child(2) {
+  animation-delay: 2.5s;
+}
+
+.heart:nth-child(3) {
+  animation-delay: 3.5s;
+}
+
+.heart:nth-child(4) {
+  animation-delay: 4.5s;
+}
+
+@keyframes floating-heart {
+  0% {
+    opacity: 0;
+    bottom: 0%;
+    left: 0%;
+  }
+  10% {
+    opacity: 1;
+    bottom: 20%;
+    left: 70%;
+  }
+  20% {
+    bottom: 40%;
+    left: 10%;
+  }
+  30% {
+    bottom: 60%;
+    left: 50%;
+  }
+  40% {
+    opacity: 1;
+    bottom: 80%;
+    left: 5%;
+  }
+  48% {
+    opacity: 0;
+    bottom: 100%;
+    left: 60%;
+  }
+  100% {
+    opacity: 0;
+    bottom: 100%;
+    left: 90%;
+  }
+}
+
+#alpaca {
+  height: 25%;
+  position: absolute;
+  bottom: 8%;
+  left: 40%;
+  fill: var(--color-main);
+}
+
+#landscape {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-main);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  z-index: 1;
+}
+  #page{
+    position: relative;
+    opacity: 0.8;
+    background-size: cover;
+  background-image: linear-gradient(rgba(30, 30, 30, 0.773),transparent) ,url("../../static/images/momday.jpg");
+  width: 100vw;
+  height:100vh;
+  text-align: center;
+  }
+  #page h1{
+    text-align: center;
+    font-size: 160px;
+    position: relative;
+    top: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    left: 100px;
+    color: transparent;
+        /*   lasa borderul netransparent  */
+
+        -webkit-text-stroke: 1px #fff;
+        background: url("../../static/images/back.png");
+        
+        /*   ne ajuta sa cream backgroundul cu un index mai mic  */
+        -webkit-background-clip:text;
+        background-position: 0 0 ;
+        animation: back 25s linear infinite;
+  }
+  @keyframes back{
+    10%{
+
+            color: rgba(235, 4, 4, 0.615);
+        }
+        30%{
+
+            color: rgba(4, 64, 243, 0.726);
+        }
+        50%{
+
+            color: rgba(205, 3, 3, 0.595);
+        }
+        70%{
+
+            color: rgba(255, 126, 126, 0.605);
+        }
+        100%{
+            background-position: 2000px 0;
+            color: rgba(247, 53, 53, 0.589);
+        }
+    }
+  #page2
+  {
+    position: absolute;
+    width: 100vw;
+    height: 230px;
+    background-size: cover;
+    background-image: linear-gradient(#d3d3d3,transparent);
+    bottom: 1px;
+    z-index: 3;
+  }
+ #slider , #slider2 ,#slider3 {
+    overflow: visible !important;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  text-align: center;
+  transition: all 0.1s;
+ }
+ 
+ #slider2{
+  opacity: 0;
+  display: none;
+ }
+ #slider3{
+  opacity: 0;
+  display: none;
+ }
+ 
+ .showslider{
+  filter: blur(0%);
+  width: 100vw !important;
+  height: 100px !important;
+  opacity: 1 !important;
+  display: flex !important; 
+ }
+ .hideslider{
+  filter: blur(100%) !important;
+  width: 5px !important;
+  height: 5px !important;
+  opacity: 0 !important;
+  transform: translateX(-900px);
+ }
+ #slider img,
+ #slider2 img{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: auto;
+  display: block;
+  bottom: 350px;
+  transition: all 1s;
+  z-index: 2;
+ }
+ #slider3 img{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: auto;
+  display: block;
+  bottom: 250px;
+  transition: all 1s;
+  z-index: 2;
+ }
+ .show_slider3img{
+  position: relative;
+  opacity: 1 !important;
+  bottom: 90px !important;
+  display: flex !important; 
+
+ }
+
+ #slider img:hover,
+ #slider2 img:hover,
+ #slider3 img:hover
+ {
+  width: 500px;
+  height: 500px;
+  transform: translateY(-250px);
+  z-index: 20;
+  border:5px solid white;
+  border-radius: 5%;
+ }
+ #self_svg{
+  position:fixed;
+  display: block;
+  margin:auto;
+  width: 50%;
+  left: 700px;
+  bottom: 120px;
+  z-index: 10;
+  transition: all 0.5s;
+  
+ }
+ #arrow1 , #arrow3 , #arrow2 {
+  transition: all 1s ease;
+ }
+ #arrow2{
+  transform: translateX(-100%);
+ }
+
+ svg:hover #arrow1{
+  transform: translateX(20%);
+  opacity: 0;
+
+ }
+ svg:hover #arrow2{
+  transform: translateX(40%);
+ }
+ svg:hover #arrow3{
+  transform: translateX(0%);
+
+ }
+
+
+      :root {
+        --dark-color: #635bff;
+        --light-color: #80e9ff;
+      }
+
+      svg {
+        cursor: pointer;
+      }
+
+      #darkGroup {
+        fill: var(--dark-color);
+      }
+      #lightGroup {
+        fill: var(--light-color);
+      }
+      #dark1,
+      #light1,
+      #dark2 {
+        transition: all 1s ease;
+      }
+      #dark2 {
+        transform: translateX(-100%);
+      }
+      svg:hover #light1 {
+        transform: translateX(20%);
+      }
+      svg:hover #dark1 {
+        transform: translateX(40%);
+        opacity: 0;
+      }
+      svg:hover #dark2 {
+        transform: translateX(0%);
+      }
+
+      .delete{
+        width: 5px !important;
+        height: 5px !important;
+        opacity: 0;
+        visibility: none;
+        display: none;
+      }
+     
+</style>
+<body>
+  <div class="dino">
+
+    <div class="dino__head">
+      <div class="dino__head__back"></div>
+      <div class="dino__head__topfront"></div>
+      <div class="dino__head__mouth"></div>
+      <div class="dino__head__throat"></div>
+      <div class="dino__head__eye"></div>
+    </div>
+  
+    <div class="dino__body">
+      <div class="dino__body__mid"></div>
+      <div class="dino__arm"></div>
+    </div>
+  
+    <div class="dino__back-leg"></div>
+  
+    <div class="dino__tail"></div>
+  
+    <div class="dino__bottom"></div>
+    <div class="dino__bottom__shadow"></div>
+  
+    <div class="dino__front-leg"></div>
+  
+  </div>
+  
+  <div class="floor"></div>
+  <div id="page_wrapper">
+              <div id="page" >
+
+                
+
+                <div id="hearts-alpaca" class="hearts">
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                  </div>
+                <h1>Ziua mamei!</h1>
+                <div id="hearts-alpaca" class="hearts">
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                  </div>
+              </div>
+              <div id="page2">
+            
+              </div>
+              <div id="slider">
+                
+                <img	src  ="{% static  'images/f1.jpg' %}"  class="fieldslider1">
+                <img	src="{% static  'images/f2.jpg' %}" class="fieldslider1">
+                <img	src="{% static  'images/f3.jpg' %}" class="fieldslider1">
+                <img	src="{% static  'images/f4.jpg' %}" class="fieldslider1">
+              </div>
+              <div id="slider2" >
+                <img	src="{% static  'images/f5.jpg' %}" class="fields2">
+                <img	src="{% static  'images/f6.jpg' %}" class="fields2">
+                <img	src="{% static  'images/f7.jpg' %}"   class="fields2">
+                <img	src="{% static  'images/f8.jpg' %}"  class="fields2">
+              </div>
+              <div id="slider3" >
+                <img	src="{% static  'images/f9.jpg' %}"  class="fields3">
+                <img	src="{% static  'images/f10.jpg' %}"   class="fields3">
+                <img	src="{% static  'images/f11.jpg' %}"    class="fields3">
+                <img	src="{% static  'images/f12.jpg' %}  " class="fields3">
+              </div>
+           
+              <div id="self_svg" onclick="nextphoto()" >
+                <svg width="273" height="185" viewBox="0 0 273 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Frame 1" clip-path="url(#clip0_0_1)">
+                  <rect width="273" height="185"/>
+                  <g id="arrowgroup2">
+                  <path id="arrow2" d="M114.822 98.9924L23.5009 152.416L21.8446 48.5062L114.822 98.9924Z" fill="#51C0EF" fill-opacity="0.5"/>
+                  </g>
+                  <g id="arrowgroup">
+                  <path id="arrow1" d="M115.023 96.9924L22.0509 150.442L20.3947 46.5325L115.023 96.9924Z" fill="#3246F8" fill-opacity="0.8"/>
+                  <path id="arrow3" d="M149.727 98.9924L59.9771 152.391L58.3208 48.4812L149.727 98.9924Z" fill="#0994F9" fill-opacity="0.6"/>
+                  </g>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_0_1">
+                  <rect width="273" height="185" fill="white"/>
+                  </clipPath>
+                  </defs>
+                  </svg>
+              </div>
+  </div>
+
+
+    
+
+</body>
+</html>
+
+
+<script>
+  var d=0;
+  function nextphoto()
+  {
+
+    if(d==0)
+    {
+
+    
+    const slider2_base = document.getElementById("slider2");
+    const slider1 = document.getElementsByClassName("fieldslider1");
+    const slider1_base = document.getElementById("slider");
+    const slider2 = document.getElementsByClassName("fieldslider2");
+    for(var i=0;i<slider1.length;i++)
+      slider1[i].classList.add("hideslider");
+
+      setTimeout(function() {
+        slider1_base.classList.add("delete");
+        
+
+  
+        slider2_base.classList.add("showslider");
+
+      for(var i=0;i<slider2.length;i++)
+        slider2[i].classList.add("showslider");
+
+
+
+}, 500);
+d++;
+    }
+    else
+    {
+     
+    const slider2base = document.getElementById("slider2");
+    const fields2 = document.getElementsByClassName("fields2");  
+
+    const slider3base = document.getElementById("slider3");
+    const fields3 = document.getElementsByClassName("fields3");  
+
+
+
+    for(var i=0;i<fields2.length;i++)
+      fields2[i].classList.add("hideslider");
+    setTimeout(function() {
+        slider2base.classList.add("delete");
+  
+        slider3base.classList.add("show_slider3img");
+      
+}, 500);
+    
+   
+    }
+
+}
+</script>
+{% endblock %}

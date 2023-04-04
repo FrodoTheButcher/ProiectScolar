@@ -96,12 +96,17 @@
     }
     #wrapper
     {
+        position: absolute;
+        width: 100vw;
+        padding-left: 0px;
+        margin: 0;
+        height: 100vh;
         display: flex;
         flex-direction: row;
       margin: 0;
       border: 0;
-        overflow: visible;
-        position: relative;
+        overflow: hidden;
+        position: fixed;
     }
     .field
     {
@@ -464,8 +469,8 @@ left: 170px;
     top: 10px;
     right: 0;
     margin: auto;
-    height: 200px;
-    width: 200px;
+    height: 500px;
+    width: 500px;
     max-width: fit-content;
     opacity: 0;
     transition: all 0.5s;
@@ -497,6 +502,9 @@ pointer-events: all;
 #elements_kid{
     display: flex;
     flex-direction: column;
+}
+#home{
+    text-decoration: none;
 }
 #kid_btn{
     text-decoration: none;
@@ -603,10 +611,17 @@ pointer-events: all;
             {% endfor %}
         </div>
        
-        <form method="POST" action="{% url 'add_kid_parent' request.user.id  %}">
+        <form id="form" method="POST" action="{% url 'send_gmail' request.user.id  %}">
             {% csrf_token %}
+            <p id="error" ></p>
             <p>Ai inca un copil inscris?</p>
-            <input name="fullname"  type="text" placeholder="Full Name">
+            <p>Prima data ofera-ne numele lui,o sa iti trimitem id-ul dupa verificari</p><br>
+            <p>Iar apoi adauga id-ul sau in sectiunea de mai jos!</p>
+            <input id="name" name="full_name_kid"  type="text" placeholder="Nume Complet copil">
+            <input type="submit" value="submit">
+        </form>
+        <form action="url 'add_kid_parent' request.user.id " method="POST">
+            <input id="idkid" name="idkid"  type="text" placeholder="Id kid">
             <input type="submit" value="submit">
         </form>
         <button id="close_btn" >Close</button>
@@ -633,7 +648,7 @@ pointer-events: all;
             <div class="field">
                 <div class="title_field">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg>
-                    <a href="{%url 'home'%}">Acasa</a>
+                    <a id="home" href="{%url 'home'%}">Acasa</a>
                 </div>
                <div class="content_field">
                 <small>Click pe paragraph pentru main page</small><br>
@@ -650,8 +665,8 @@ pointer-events: all;
                       </ol>
                 </div>
                <div class="content_field">
-                <small>Click pe paragraph pentru main page</small><br>
-                <small>Sectiunea de main page va asteapta!</small>
+                <small>Click pe paragraph pentru a vedea</small><br>
+                <small>o lista de linkuri pentru poze cu copii!</small>
                </div>
                 
             </div>
@@ -759,9 +774,9 @@ pointer-events: all;
                                 <div class="title_field" >
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.95v-9q0-.425.288-.713q.287-.287.712-.287h7q.425 0 .712.287q.288.288.288.713v5q0 .425-.288.712q-.287.288-.712.288h-5Zm2-5h5v-3h-5Zm0 0v-3v3ZM19.95 21q-3.225 0-6.287-1.438q-3.063-1.437-5.425-3.8q-2.363-2.362-3.8-5.425Q3 7.275 3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.012.637q-.063.288-.288.513L6.975 10.9q1.05 1.8 2.638 3.375Q11.2 15.85 13.1 17l2.35-2.35q.225-.225.588-.338q.362-.112.712-.062l3.45.7q.35.075.575.337q.225.263.225.613v4.05q0 .45-.3.75t-.75.3ZM6.025 9l1.65-1.65L7.25 5H5.025q.125 1.025.35 2.025q.225 1 .65 1.975Zm8.95 8.95q.975.425 1.988.675q1.012.25 2.037.325v-2.2l-2.35-.475ZM6.025 9Zm8.95 8.95Z"/></svg>
-                                    <p>Numar de telefon</p>
+                                    <p>Numar de telefon...</p>
                                 </div>
-                                <input type="text" placeholder="Nu este selectat">
+                                <input type="text" placeholder="{{profile.phone}}">
                             </div>
                             
                         </div>
@@ -858,4 +873,27 @@ closekid.addEventListener("click",()=>{
 });
 
 
+
+
+
+const name=document.getElementById('name')
+const frm=document.getElementById("form")
+const error=document.getElementById("error");
+frm.addEventListener('submit',(e)=>{
+  console.log(1);
+  let messages =[]
+  if(name.value === '' || name.value==null)
+  {
+    messages.push("Numele nu este valid");
+  }
+  if(messages.length>0)
+  {
+    e.preventDefault()
+    error.innerText=messages.join(', ');
+  }
+  else
+  {
+    error.innerText="Un gmail cu id-ul copilului va fi trimis dupa validarea datelor!"
+  }
+});
 </script>

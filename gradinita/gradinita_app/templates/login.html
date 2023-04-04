@@ -262,15 +262,7 @@ body{
 
 
 <body>
-  {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-  {% block content %}
-{% endblock %}
+ 
   <div class="wrapper">
     <h2>Login page</h2>
     <form action="#" method="POST" >
@@ -310,52 +302,29 @@ body{
       </div>
       <div class="text">
         <h3>Not having an account? <a href="{% url 'inscrie'%}">Register now</a></h3>
-        <p id="button_pop_password">Forgot password?</p>
+        <a href="{% url 'reset_password'  %}">Forgot password?</a>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% block content %}
+      {% endblock %}
 
       </div>
     
     </form>
 
   </div>
-  <form id="password_pop" action="{% url 'forgot_password'  %}" method="POST">
-    {% csrf_token %}
-    <div class="field2">
-      {{password.password1}}
-      <label class="label2" for="">Password1</label>   
-    </div>
-    <div class="field2">
-      {{password.password2}}
-      <label class="label2" for="">Password2</label>
-    </div>
-   <div class="field2">
-    {{password.email}}
-    <label class="label2" for="">Email</label>
-   </div>
-   
-    <input id="buttonpsw" type="submit" value="submit">
-
-  </form>
+ 
 </body>
 </html>
 
 <script>
 
-  
-  var psw1=document.getElementById("id_password1");
-  psw1.classList.add('input2')
 
-  var psw2=document.getElementById("id_password2");
-  psw2.classList.add('input2')
-
-  var email=document.getElementById("id_email");
-  email.classList.add('input2')
-
-  const btnpassword = document.getElementById("button_pop_password");
-  btnpassword.addEventListener("click",()=>{
-    document.getElementById("password_pop").classList.toggle("show_password");
-    console.log(1);
-
-  })
 
   var form_fields = document.getElementsByTagName('input')
 

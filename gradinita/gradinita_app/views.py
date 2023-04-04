@@ -16,6 +16,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random
 import string
+from .tasks import send_account_created_email
+
 
 def navbar(request):
     return render(request,"navbar.html")
@@ -25,100 +27,24 @@ def home(request):
 
 
 
-def inscrie(request):
-     form = CustomUserCreationForm()
-     if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            kid2 = request.POST['kid']
-            user = form.save(commit=False)
-            child=Kids.objects.get(full_name=kid2)
-            if child is not None:
-                    if child.parent:
-                        return render(request,"sorry.html")
-                    
-                    user.save()
-                    profile = Profile.objects.create(
-                        owner=user,
-                        username=user.username,
-                        name=user.first_name,
-                        last_name=user.last_name,
-                        email=user.email,
-                        kid=kid2
-                    )
-                    profile.save()
-                    child.parent=profile
-                    child.save()
-
-                    send_mail(
-                        profile.username,
-                        "Contul tau a fost creat!",
-                        settings.EMAIL_HOST_USER,
-                        [profile.email],
-                        fail_silently=False,
-                    )
-
-                    return redirect('home')
-     return render(request,"inscriere.html",{"form":form})
-
-
-def delete(request,pk):
-    user = User.objects.get(id=pk)
-    user.delete()
-    return redirect('inscriere')
-def update(request,pk):
-    if  request.method == 'POST':
-        user = User.objects.get(id=pk)   
-        PROFILE = Profile.objects.get(owner=user)
-        profile = ProfileForm(request.POST,request.FILES,instance=PROFILE)
-        if profile.is_valid():
-            profile.save()
-            user.first_name=request.POST['name']
-            user.last_name=request.POST['last_name']
-            user.username = request.POST['username']
-            user.email = request.POST['email']
-            return redirect("account",pk=user.id)
-        return render(request,"sorry.html")
-    return redirect('home')
-        
 
 
 
-def changepassword(request,pk):
-    form = EditPasswordForm()
-    user = User.objects.get(id=pk)
-    profile = Profile.objects.get(owner=user)
-    if request.method=='POST':
-        form = EditPasswordForm(request.POST)
 
-        if form.is_valid():
-            password1 = request.POST['password1']  
-            old_password=request.POST['oldpassword'] 
-            current_password=user.password    
-            equality=check_password(old_password,current_password)
-            if equality  :    
-                messages.success(request, "Un cod pentru parola a fost trimis pe gmail!" )  
-                return redirect('gmail',pk=pk,newpassword=password1)      
-                    
 
-            messages.success(request, "Old password must match with the current one!" )  
-        else:
-            messages.success(request,"Passwords must match")
-    return redirect('account',pk=pk)
-    
 
 
 def verification_gmail(request,pk,newpassword):
     user = User.objects.get(id=pk)
     profile = Profile.objects.get(owner=user)
     hash =random()
-    send_mail(
-            profile.username,
-              hash,
-             settings.EMAIL_HOST_USER,
-            [profile.email],
-             fail_silently=False,
-    )
+    #send_mail(
+     #       profile.username,
+      #        hash,
+       #      settings.EMAIL_HOST_USER,
+        #    [profile.email],
+         #    fail_silently=False,
+    #)
    
     if request.method=='POST':
         form = request.POST['email_verification']
@@ -160,25 +86,85 @@ def catalog(request):
         return render(request,"catalog.html",context)
 
 
-def account(request,pk):
-    user = User.objects.get(id=pk)
-    profile = Profile.objects.get(owner=user)
-    kid = Kids.objects.filter(parent=profile)
-    edit_password = EditPasswordForm()
-    formprofile = ProfileForm(instance=profile)
-    context = {"profile" : profile,"password":edit_password,"formprofile":formprofile,"kid":kid}
-    return render(request,"account.html",context)
 
-def kid_account(request,pk):
-    kid = Kids.objects.get(id=pk)
-    motivari = motivari_elev.objects.filter(owner=kid)
-    absente=absente_elev.objects.filter(owner=kid)
-    context={'profile':kid,'abs':absente,'motv':motivari}
-    return render(request,"profile_kid.html",context)
+
 
 def logoutUser(request):
         logout(request)
         return redirect('home')
+
+
+
+
+
+def adauga_copil_PARINTE(request,pk,id):
+    user = User.objects.get(id=pk)
+    parent=Profile.objects.get(owner=user)
+    if request.method=='POST':
+        try:
+            kid = Kids.objects.get(id=id)
+        except:
+            kid=None
+            messages.success(request,"KID ID INCORRECT")
+            return redirect("account",pk=pk)
+
+        if kid is not None:
+            kid.parent=parent
+            kid.save()
+            messages.success(request,"KID ADDED ")
+            return redirect("account",pk=pk)
+
+def send_gmail(request,pk):
+         user  = User.objects.get(id=pk)
+         profile = Profile.objects.get(owner=user)
+         if request.method=='POST':
+             full_namekid = request.POST['full_name_kid']
+             send_mail(
+                          "Cererea id copil de catre:" + profile.username,
+                        "Cerere id pentru "+ full_namekid + " venita de la "+ profile.full_name + "cu numarul de telefon :"+ profile.phone,
+                        settings.EMAIL_HOST_USER,
+                            [profile.email],
+                            fail_silently=False,
+                        )
+    
+def send_gmail_DEFAULT(request):
+    if request.method=='POST':
+        gmail = request.POST['gmail']
+        full_name = request.POST['fullnameparent']
+        nr_tel =request.POST['nr_tel']
+        kid=request.POST['kid_fullname']
+        send_mail(
+                          "Cererea id copil de catre:" + full_name,
+                        "Cerere id pentru "+ kid + " venita de la "+ full_name + "cu numarul de telefon :"+ nr_tel,
+                        settings.EMAIL_HOST_USER,
+                            [gmail],
+                            fail_silently=False,
+                        )
+
+
+def about_us(request):
+    return render(request,"aboutus.html")
+
+
+
+
+
+
+def page_kids(request):
+    return render(request,"page1.html")
+def page_kids2(request):
+    return render(request,"page2.html")
+def page_kids3(request):
+    return render(request,"page3.html")
+
+
+
+
+
+
+
+##functionalitati copii
+#tudor
 def kid_register(request):
     form = KidsForm()
     if request.method=='POST':
@@ -202,55 +188,6 @@ def kid_register(request):
     return render(request,"register_kid.html",{"form":form})
 
 
-def kid_account(request,pk):
-    chield = Kids.objects.get(id=pk)
-    
-    return render(request,"account_kid.html",{"kid":chield})
-
-def request_kid(request,pk):
-        parent = User.objects.get(id=pk)
-        profile = Profile.objects.get(owner=parent)
-        kid = Kids.objects.get(parent=profile)
-        return render(request,"account_kid.html",kid.id,{"kid":kid})
-
-def absente_motivari(request,pk):
-    kid =Kids.objects.get(id=pk)
-    absente=absente_elev.objects.filter(owner=kid)
-    motivari=motivari_elev.objects.filter(owner=kid)
-    
-    
-    form_abs = absente_elevForm()
-    form_mot= motivari_elevForm()
-    form_kid = KidsForm(instance=kid)
-
-    context ={'absente':absente,'motivari':motivari,'kid':kid,'form':form_kid,'form_absente':form_abs,'form_motivare':form_mot}
-    return render(request,"absente_motivari.html",context)
-
-def update_kid(request,pk):
-    kid=Kids.objects.get(id=pk)
-    if request.method=='POST':
-       form = KidsForm(request.POST,request.FILES,instance=kid)
-       if form.is_valid():
-            form.save()
-            return redirect('absente_motivari',pk=pk)
-
-def adauga_copil_PARINTE(request,pk):
-    user = User.objects.get(id=pk)
-    parent=Profile.objects.get(owner=user)
-    if request.method=='POST':
-        fullname=request.POST['fullname']
-        try:
-            kid = Kids.objects.get(full_name=fullname)
-        except:
-            kid=None
-            messages.success(request,"KID NAME INCORRECT")
-            return redirect("account",pk=pk)
-
-        if kid is not None:
-            kid.parent=parent
-            kid.save()
-            messages.success(request,"KID ADDED ")
-            return redirect("account",pk=pk)
 
 def delete_absenta(request,pk,pk2):
     absenta = absente_elev.objects.get(id=pk)
@@ -288,11 +225,6 @@ def adauga_motivare(request,pk):
             return redirect("absente_motivari",pk=pk)
 
     return redirect("home")
-           
-def about_us(request):
-    return render(request,"aboutus.html")
-
-
 
 
 def adauga_absenta(request,pk):
@@ -314,17 +246,56 @@ def adauga_absenta(request,pk):
     return redirect("home")
 
 
+#crud
+def update_kid(request,pk):
+    kid=Kids.objects.get(id=pk)
+    if request.method=='POST':
+       form = KidsForm(request.POST,request.FILES,instance=kid)
+       if form.is_valid():
+            form.save()
+            return redirect('absente_motivari',pk=pk)
 
-def page_kids(request):
-    return render(request,"page1.html")
 
 
+##date personale copil
 
 
+def request_kid(request,pk):
+        parent = User.objects.get(id=pk)
+        profile = Profile.objects.get(owner=parent)
+        kid = Kids.objects.get(parent=profile)
+        return render(request,"account_kid.html",kid.id,{"kid":kid})
 
+def absente_motivari(request,pk):
+    kid =Kids.objects.get(id=pk)
+    absente=absente_elev.objects.filter(owner=kid)
+    motivari=motivari_elev.objects.filter(owner=kid)
+    
+    
+    form_abs = absente_elevForm()
+    form_mot= motivari_elevForm()
+    form_kid = KidsForm(instance=kid)
+
+    context ={'absente':absente,'motivari':motivari,'kid':kid,'form':form_kid,'form_absente':form_abs,'form_motivare':form_mot}
+    return render(request,"absente_motivari.html",context)
+
+
+def kid_account(request,pk):
+    kid = Kids.objects.get(id=pk)
+    motivari = motivari_elev.objects.filter(owner=kid)
+    absente=absente_elev.objects.filter(owner=kid)
+    context={'profile':kid,'abs':absente,'motv':motivari}
+    return render(request,"profile_kid.html",context)
 
 
 ####PASSWORD FIELDS
+#Fodor
+
+
+
+
+
+
 def loginUser(request):
     password = EditPasswordForm()
     if request.method=='POST':
@@ -345,38 +316,127 @@ def loginUser(request):
     return render(request,'login.html',{'password':password})
     
 
-def password_lost(request):
+def changepassword(request,pk):
+    form = EditPasswordForm()
+    user = User.objects.get(id=pk)
+    profile = Profile.objects.get(owner=user)
     if request.method=='POST':
-        password_form=EditPasswordForm(request.POST)
+        form = EditPasswordForm(request.POST)
 
-        if password_form.is_valid():
-            password1 = request.POST['password1']
-            email = request.POST['email']
-            messages.success(request, "Un cod pentru parola a fost trimis pe gmail!" )  
-            length = 10
-            characters = string.ascii_letters + string.digits
-            code = ''.join(random.choice(characters) for i in range(length))
-            send_mail(
-                        "Password verification",
-                        code,
-                        settings.EMAIL_HOST_USER,
-                        [email],
+        if form.is_valid():
+            password1 = request.POST['password1']  
+            old_password=request.POST['oldpassword'] 
+            current_password=user.password    
+            equality=check_password(old_password,current_password)
+            if equality  :    
+                messages.success(request, "Un cod pentru parola a fost trimis pe gmail!" )  
+                return redirect('gmail',pk=pk,newpassword=password1)      
+                    
+
+            messages.success(request, "Old password must match with the current one!" )  
+        else:
+            messages.success(request,"Passwords must match")
+    return redirect('account',pk=pk)
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+def account(request,pk):
+    user = User.objects.get(id=pk)
+    profile = Profile.objects.get(owner=user)
+    kid = Kids.objects.filter(parent=profile)
+    edit_password = EditPasswordForm()
+    formprofile = ProfileForm(instance=profile)
+    context = {"profile" : profile,"password":edit_password,"formprofile":formprofile,"kid":kid}
+    return render(request,"account.html",context)
+
+
+
+##CRUD USER
+
+def inscrie(request):
+     form = CustomUserCreationForm()
+     if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            try:
+                user_test = User.objects.get(email=form.email)
+            except:
+                user_test=None
+                
+            if user_test is not None:
+                messages.success(request, "There is already an email existing." )  
+                return render(request,"sorry.html")
+
+            kid2 = request.POST['kid']
+            user = form.save(commit=False)
+            try:
+                child=Kids.objects.get(key=kid2)
+            except:
+                child= None
+            if child is None:
+                messages.success(request, "The kid doesn't exist" )  
+                return render(request,"sorry.html")
+            if child is not None:
+                    if child.parent:
+                        messages.success(request, "The kid is not yours!" )  
+
+                        return render(request,"sorry.html")
+                    
+                    user.save()
+                    profile = Profile.objects.create(
+                        owner=user,
+                        username=user.username,
+                        name=user.first_name,
+                        last_name=user.last_name,
+                        email=user.email,
+                        kid=kid2
+                    )
+                    profile.save()
+                    child.parent=profile
+                    child.save()
+
+                    send_mail(
+                        profile.username,
+                      "Contul tau a fost creat!",
+                       settings.EMAIL_HOST_USER,
+                       
+                        [profile.email],
                         fail_silently=False,
-             )
-            return redirect('password_lostGmail',password=password1,email=email,code=code)
-        messages.success(request,"Passwords must match!")
-        return redirect('login')
+                    )
 
-def password_lost_EmailVerif(request,password,email,code):
-    if request.method=='POST':
-        gmail_code = request.POST['code']
-        if code == gmail_code:
-            user = User.objects.get(email=email)
-            messages.success(request,"PASSWORD WAS SUCCESFULLY CHANGED!")
-            user.set_password(password)
-            user.save()
-            login(request,user)
-            return redirect("account",user.id)
-        messages.success(request,"Gmail code is wrong")
-        return redirect('login')
-    return render(request,"verificare_passwordCode.html")
+                    return redirect('home')
+     return render(request,"inscriere.html",{"form":form})
+
+
+def delete(request,pk):
+    user = User.objects.get(id=pk)
+    user.delete()
+    return redirect('inscriere')
+def update(request,pk):
+    if  request.method == 'POST':
+        user = User.objects.get(id=pk)   
+        PROFILE = Profile.objects.get(owner=user)
+        profile = ProfileForm(request.POST,request.FILES,instance=PROFILE)
+        if profile.is_valid():
+            profile.save()
+            user.first_name=request.POST['name']
+            user.last_name=request.POST['last_name']
+            user.username = request.POST['username']
+            user.email = request.POST['email']
+            return redirect("account",pk=user.id)
+        return render(request,"sorry.html")
+    return redirect('home')
+        

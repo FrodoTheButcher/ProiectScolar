@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: rgb(227, 227, 227);
+        align-items: center;
+        position: relative;
+        text-align: center;
+        line-height: 10px;
+    }
+  
+    #sender
+    {
+        width: 900px;
+        height: 500px;
+        background-color: white;
+        position: relative;
+        left: 0;
+        top:80px;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        align-items: center;
+        text-align: center;        
+    }
+    h1{
+        position: relative;
+        font-size: 50px;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: rgb(28, 85, 241);
+        top: 30px;
+    }
+ 
+ li{
+    text-decoration: none;
+    list-style: none;
+ }
+
+ form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    line-height: 10px;
+ }
+ .field{
+    position: relative;
+    top: 100px;
+    margin: 30px;
+    display: flex;
+    
+ }
+ .field label{
+position: absolute;
+ }
+
+ svg{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+ }
+.field_top{
+position: relative;
+top: 50px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.label{
+    transition: all 0.3s;
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    pointer-events: none;
+}
+
+.field:focus-within .label  ,
+#id_new_password1:not(:placeholder-shown) + label
+{
+    color: rgb(68, 0, 255);
+    transform: scale(0.8) translateY(-2rem) translateX(-2rem);
+   
+}
+.field:focus-within .label  ,
+#id_new_password2:not(:placeholder-shown) + label
+{
+    color: rgb(0, 38, 255);
+    transform: scale(0.8) translateY(-2rem) translateX(-2rem);
+   
+}
+#btn{
+    position: relative;
+    top: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10%;
+    background-color: rgb(41, 97, 250);
+    border: none;
+    color: white;
+    border-color: 1px solid aliceblue;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   }
+   #btn:hover{
+    background-color: rgb(60, 110, 245);
+
+   }
+</style>
+<body>
+    <h1>Password reset!</h1>
+    <div id="sender">
+        <form action="" method="POST">
+            <div class="field_top">
+                <h3>That's the last step!</h3>
+                <h2>Just enter your new password and confirm it!</h2>
+            </div>
+
+            <div class="field">{{form.new_password1}}
+            <label  class="label" for="password">password</label>
+            </div>
+            <div class="field">{{form.new_password2}}
+                <label class="label" for="password">repeat password</label>
+                </div>
+                <div class="field">
+                    <input id="btn" type="submit">
+
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 15c0 1.11-.89 2-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2m-.91 5c.12.72.37 1.39.72 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6c0-2.76 2.24-5 5-5s5 2.24 5 5v2h1a2 2 0 0 1 2 2v3.09c-.33-.05-.66-.09-1-.09c-.34 0-.67.04-1 .09V10H6v10h7.09M9 8h6V6c0-1.66-1.34-3-3-3S9 4.34 9 6v2m12.34 7.84l-3.59 3.59l-1.59-1.59L15 19l2.75 3l4.75-4.75l-1.16-1.41Z"/></svg>
+        </form>
+    </div>
+    
+</body>
+</html>
+<script>
+   const inp1 = document.getElementById("id_new_password1");
+   inp1.placeholder=" ";
+   const inp2 = document.getElementById("id_new_password2");
+   inp2.placeholder=" ";
+</script>

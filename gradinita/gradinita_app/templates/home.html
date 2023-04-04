@@ -214,10 +214,15 @@ nav ul li a{
 
     .text-box p
     {
+        position: relative;
+        top: 5px;
+        z-index: 1;
         font-size: 50px;
         font-weight: 800;
         margin: 20px;
         padding: 10px;
+        overflow: hidden;
+
     }
     .text-box h1{
         font-size: 190px;
@@ -252,7 +257,10 @@ nav ul li a{
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        margin-top: 30px;
+        position: relative;
+        left: 50px;
+        bottom:20px;
+        overflow: hidden;
     }
     .text-box a{
         color: #ffffff;
@@ -417,6 +425,33 @@ nav ul li a{
 		transform: rotate(360deg);
 	}
 }
+
+#album{
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    filter: blur(0%);
+    transform: translateY(-10px);
+    transition: all 0.3s;
+    pointer-events: none;
+    top: 30px;
+}
+#album a{
+    top: 5px !important;
+}
+#album_list{
+    position: absolute;
+    left: 150px;
+    font-size: 30px;
+}
+.show_album{
+    opacity: 1 !important;
+    filter: blur(100%) !important;
+    transform: translateY(0px) !important;
+    pointer-events: all !important;
+    z-index: 100;
+}
+
 </style>
 
 <body>
@@ -447,8 +482,15 @@ nav ul li a{
             <li><a href="{% url 'inscrie' %}">register</a></li>
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'account' request.user.id %}">account parinte</a></li>
-
             {% endif %}
+            <li> <a id="album_list" onclick="event.preventDefault();" href="">Album</a> </li>
+            <div id="album">
+                <li> <a href="{% url 'page1' %}">page 1</a></li>
+                <li> <a href="{% url 'page2' %}">page 2</a></li>
+                <li> <a href="{% url 'page3' %}">page 3</a></li>
+                <li> <a href="{% url 'page1' %}">page 4</a></li>
+                <li> <a href="{% url 'page1' %}">page 5</a></li>
+            </div>
         </ul>
         <div class="cart-icon" >
             
@@ -457,11 +499,10 @@ nav ul li a{
     </nav>
    
     <div class="text-box" >
-       
-
+    
                 <p>Reprezentăm</p>
-        <h1>Grădinița Primii Pași</h1>
-        <h3>Grijă iubire și atenție</h3>
+               <h1>Grădinița Primii Pași</h1>
+       <h3>Grijă iubire și atenție</h3>
        <div class="row">
         <a href="{% url 'inscrie' %}"  >Creează-ți cont ca părinte <span>&#x2192;</span></a>
         <a href="">Oferă-ne un feedback!<span>&#x2192;</span> </a>
@@ -507,6 +548,15 @@ nav ul li a{
         let back = document.getElementsByName("body");
         load[0].classList.add("hide");
     bod.style.opacity=1;}, 2000);
+
+
+
+const pages = document.getElementById("album_list");
+const list = document.getElementById("album");
+pages.addEventListener('click',()=>{
+console.log(1);
+list.classList.toggle("show_album");
+});
 </script>
 
 </html>

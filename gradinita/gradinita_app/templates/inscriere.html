@@ -153,10 +153,191 @@ form .text h3 a:hover{
 .field{
  margin-top: 40px !important;
 }
+#request_id{
+  position: absolute;
+  z-index: 50;
+  width: 800px;
+  height: 400px;
+  background-color: rgb(253, 253, 253);
+  top: 0px;
+  border: 1px solid rgb(201, 201, 201);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-align: center;
+
+
+  opacity: 0;
+  transition: all 0.5s;
+  transform: translateY(-400px);
+}
+
+#request_id .header h1{
+  color: blue;
+}
+#request_id .header span{
+  color: rgb(13, 13, 212);
+}
+
+.user_input{
+  width: 100%;
+ text-align: left;
+}
+.user_input .field3{
+  display: flex;
+  flex-direction: column;
+}
+.field3
+{
+  margin: 30px;
+}
+.user_input input{
+  width: 350px;
+  margin-left: 20px;
+}
+.user_input label{
+  margin-left: 40px;
+  font-size: 10px;
+ position: absolute;
+ margin-top: 10px;
+}
+.contact_body{
+  display: flex;
+}
+.contact_body .body_input textarea{
+  margin-right: 40px;
+  position: relative;
+  top: 30px;
+  width: 300px;
+}
+
+#close{
+  background-color: #0e4bf1;
+  position: relative;
+  top: 50px;
+  width: 300px;
+
+}
+
+.show_request{
+  opacity: 1 !important;
+  transform: translateY(0px)!important;
+}
+
+.input2{
+  margin: 30px;
+}
+.fieldlabel
+{
+  display: flex;
+  align-items: center;
+  transition: all 0.5s;
+  position: absolute;
+  left: 35px;
+  margin-top: -50px;
+}
+
+.fieldlabel svg{
+  width: 10px;
+  height: 10px;
+}
+.field2 .fieldlabel .label2{
+  font-size: 12px;
+  pointer-events: none !important;
+  cursor: none;
+}
+label{
+  pointer-events: none;
+}
+.field2:focus-within .fieldlabel,
+.input2:not(:placeholder-shown) + .fieldlabel
+{
+    color: red;
+    transform: scale(0.8) translateY(-1.5rem) translateX(-1rem);
+}
+
+
+
+.btn_send
+{
+  position: relative !important;
+  top: -10px !important;
+  background-color: rgb(26, 26, 231) !important;
+  color: white !important;
+  width: 500px !important;
+  height: 30px !important;
+  margin: 10px;
+}
+.btn_send:hover{
+  background-color: rgb(46, 46, 245) !important;
+  color: white !important;
+  width: 501px !important;
+  height: 31px !important;
+}
+
+#id_Card{
+  width: 120px;
+  height: 120px;
+  color: rgb(51, 76, 243);
+  background-color: transparent;
+}
+#error{
+  font-family: 'Courier New', Courier, monospace;
+}
 
 </style>
 
+  <div id="request_id">
+              <div class="header">
+                <p id="error">Adauga date valide!</p>
 
+                <h1>Contact our <span>Admin</span> </h1>
+              </div>
+            
+                  <div class="contact_body">
+                    <div>
+                      <form id="form" action="{url 'send_gmail_DEFAULT'}" method="POST">
+
+                        <div class="field2">
+                          <input id="email" name="gmail" class="input2" type="email">
+                          <div class="fieldlabel">
+                            <label class="label2" for="">Gmail...</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 18q-.825 0-1.413-.588T1 16V4q0-.825.588-1.413T3 2h16q.825 0 1.413.588T21 4v5h-2V6l-7.475 4.675q-.125.075-.263.113t-.262.037q-.125 0-.263-.037t-.262-.113L3 6v10h10v2H3Zm8-9l8-5H3l8 5Zm8 13q-1.65 0-2.825-1.175T15 18v-4.5q0-1.05.725-1.775T17.5 11q1.05 0 1.775.725T20 13.5V17q0 .425-.288.713T19 18q-.425 0-.713-.288T18 17v-3.5q0-.2-.15-.35T17.5 13q-.2 0-.35.15t-.15.35V18q0 .825.588 1.413T19 20q.825 0 1.413-.588T21 18v-3q0-.425.288-.713T22 14q.425 0 .713.288T23 15v3q0 1.65-1.175 2.825T19 22ZM3 6v.25V4.8q0-.275 0 0V4v.8v-.025V6.25V6v10V6Z"/></svg>
+                          </div>
+                        </div>
+                        <div class="field2">
+                          <input id="name" class="input2" type="text">
+                          <div class="fieldlabel">
+                            <label class="label2" name="fullnameparent" for="">Nume Complet...</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5.85 17.1q1.275-.975 2.85-1.538T12 15q1.725 0 3.3.563t2.85 1.537q.875-1.025 1.363-2.325T20 12q0-3.325-2.337-5.663T12 4Q8.675 4 6.337 6.337T4 12q0 1.475.488 2.775T5.85 17.1ZM12 13q-1.475 0-2.488-1.012T8.5 9.5q0-1.475 1.012-2.488T12 6q1.475 0 2.488 1.012T15.5 9.5q0 1.475-1.012 2.488T12 13Zm0 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q1.325 0 2.5-.388t2.15-1.112q-.975-.725-2.15-1.113T12 17q-1.325 0-2.5.388T7.35 18.5q.975.725 2.15 1.113T12 20Zm0-9q.65 0 1.075-.425T13.5 9.5q0-.65-.425-1.075T12 8q-.65 0-1.075.425T10.5 9.5q0 .65.425 1.075T12 11Zm0-1.5Zm0 9Z"/></svg>                          </div>
+                        </div>
+                        <div class="field2">
+                          <input id="nr" class="input2" name="nr_tel" type="text">
+                          <div class="fieldlabel">
+                            <label class="label2" for="">Nr tel...</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20h4v-1h-4v1Zm-3 3q-.825 0-1.413-.588T5 21V3q0-.825.588-1.413T7 1h10q.825 0 1.413.588T19 3v18q0 .825-.588 1.413T17 23H7Zm0-5v3h10v-3H7Zm0-2h10V6H7v10ZM7 4h10V3H7v1Zm0 14v3v-3ZM7 4V3v1Z"/></svg>                          </div>
+                        </div>
+                        <div class="field2">
+                          <input id="kid_id" class="input2" name="kid_fullname" type="text">
+                          <div class="fieldlabel">
+                            <label class="label2" for="">Nume complet copil...</label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20h4v-1h-4v1Zm-3 3q-.825 0-1.413-.588T5 21V3q0-.825.588-1.413T7 1h10q.825 0 1.413.588T19 3v18q0 .825-.588 1.413T17 23H7Zm0-5v3h10v-3H7Zm0-2h10V6H7v10ZM7 4h10V3H7v1Zm0 14v3v-3ZM7 4V3v1Z"/></svg>                          </div>
+                        </div>
+                    </div>
+                   
+
+                  <div class="body_input">
+                    <textarea name="Adauga mesaj optional" placeholder="     Mesaj optional" id="" cols="30" rows="10"></textarea>
+                  </div>
+                  <div class="right_svg">
+                    <svg id="id_Card" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M22 3H2c-1.09.04-1.96.91-2 2v14c.04 1.09.91 1.96 2 2h20c1.09-.04 1.96-.91 2-2V5a2.074 2.074 0 0 0-2-2m0 16H2V5h20v14m-8-2v-1.25c0-1.66-3.34-2.5-5-2.5c-1.66 0-5 .84-5 2.5V17h10M9 7a2.5 2.5 0 0 0-2.5 2.5A2.5 2.5 0 0 0 9 12a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 9 7m5 0v1h6V7h-6m0 2v1h6V9h-6m0 2v1h4v-1h-4"/></svg>
+                  </div>
+      
+    </div>
+    <input type="submit" class="btn_send" value="Submit">
+
+    <button onclick="make_show()" class="btn_send" id="close">Close</button>
+  </form>
+
+  </div>
 
   <div class="wrapper">
     <h2>Registration</h2>
@@ -207,7 +388,7 @@ form .text h3 a:hover{
       <input type="text" name="kid"  value="" placeholder="" required>
       <label for="kid "class="label">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0m6-2h.01M15 10h.01"/><path d="M9.5 15a3.5 3.5 0 0 0 5 0M12 3a2 2 0 0 0 0 4"/></g></svg>
-        Enter kid's full name</label>
+        Enter kid's id</label>
 
     </div>
  
@@ -220,9 +401,10 @@ form .text h3 a:hover{
         <input type="submit" value="Register Now">
       </div>
       <div class="text">
-        <h3>Already have an account? <a href="#">Login now</a></h3>
+        <h3>Already have an account? <a href="{% url 'login' %}">Login now</a></h3>
       </div>
-        
+      <button onclick="make_show()" id="open_pop">Request id</button>
+
       {% for field in form %}
       {% if field.help_text %}
         <small  >{{field.help_text}}</small>
@@ -230,6 +412,7 @@ form .text h3 a:hover{
     {% endfor %}
     </form>
   </div>
+
 </body>
 
 </html>
@@ -267,6 +450,55 @@ form_fields[field].placeholder=" ";
 for (var field in form_fields){	
 form_fields[field].className += ' form-control'
 }
+
+
+
+const btn_pop = document.getElementById("open_pop");
+var real_pop = document.getElementById("request_id");
+const btn_close = document.getElementById("close");
+
+
+function make_show()
+{
+  real_pop.classList.toggle("show_request");
+  console.log(real_pop);
+}
+
+
+
+
+const name=document.getElementById('name')
+const email = document.getElementById("email");
+const nr=document.getElementById("nr");
+const frm=document.getElementById("form")
+const error=document.getElementById("error");
+frm.addEventListener('submit',(e)=>{
+  console.log(1);
+  let messages =[]
+  if(name.value === '' || name.value==null)
+  {
+    messages.push("Numele nu este valid");
+  }
+  if(email.value === '' || email.value==null)
+  {
+    messages.push("Gmail  nu este valid");
+  }
+  if(nr.value ==='' || nr.value==null)
+  {
+    messages.push("Adauga numarul tau de telefon")
+  }
+  if(messages.length>0)
+  {
+    e.preventDefault()
+    error.innerText=messages.join(', ');
+
+  }
+  else
+  {
+    error.innerText="Un gmail cu id-ul copilului va fi trimis dupa validarea datelor!"
+  }
+});
+
 
 </script>
 </body>
